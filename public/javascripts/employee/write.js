@@ -1,3 +1,4 @@
+
 const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
@@ -19,6 +20,24 @@ button.addEventListener('click',()=>{
         }
         param[input.getAttribute('name')] = input.value;
     }
+
+    fetch("/employee/write",{
+        method : "post"
+        ,body : JSON.stringify(param)
+        ,headers : {
+            'content-type' : 'application/json'
+        }
+    }).then((res)=> res.json())
+    .then((res)=>{
+        if(res.result){
+            alert('저장되었습니다.');
+            location.href = '/employee/list';
+        }
+        if(!res.result){
+            alert(res.errMessage);
+            return false;
+        }
+    })
 })
 
 //focus 이벤트

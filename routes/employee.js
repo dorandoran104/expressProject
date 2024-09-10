@@ -10,4 +10,8 @@ router.get("/write",(req,res)=>{
     controller.get.write(req,res);
 })
 
+router.post('/write',(req,res)=>{
+    controller.post.write(req,res);
+})
+
 module.exports = router;
