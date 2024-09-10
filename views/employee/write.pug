@@ -1,0 +1,25 @@
+extends ../include/header
+
+block content
+  h1= title
+  table 
+    tr 
+      th 이름
+      td 
+        input(type="text", name="name",autocomplete='off')
+      th 생년월일
+        input(type="text", name="birth_date",autocomplete='off')
+    tr 
+      th(colspan="2") 휴대폰번호
+        input(type="text", name="mobile_number",autocomplete='off')
+    tr
+      th 이메일
+      td 
+        input(type="text", name="email",autocomplete='off')
+      th 비밀번호
+      td 
+        input(type="password", name="password",autocomplete='off')
+  button.write_btn(type="button") 등록
+  script(src="/javascripts/employee/write.js") 
+  
+//- block footer  
