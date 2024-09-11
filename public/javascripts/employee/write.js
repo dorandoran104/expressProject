@@ -2,7 +2,6 @@ const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
-
 let button = document.querySelector("button.write_btn");
 
 button.addEventListener('click',()=>{
@@ -28,6 +27,7 @@ button.addEventListener('click',()=>{
         }
     }).then((res)=> res.json())
     .then((res)=>{
+        console.log(res);
         if(res.result){
             alert('저장되었습니다.');
             location.href = '/employee/list';

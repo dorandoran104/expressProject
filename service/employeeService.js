@@ -1,4 +1,14 @@
-const model = require("../models/employee.model");
+const employeeModel = require("../models/employee.model");
+
+exports.list = async (req,res)=>{
+    let body = req.body;
+    if(body.page == null || body.page == ''){
+        body.page = 1;
+    }
+    let resultObj = {};
+    resultObj.list = await employeeModel.list(body);
+    return resultObj;
+}
 
 exports.write = async (req,res)=>{
     const body = req.body;
@@ -8,7 +18,7 @@ exports.write = async (req,res)=>{
     const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
     let resultObj = {};
-    Object.keys(body).forEach((data)=>{
+    Object.keys(body).forEach(async (data)=>{
         if(body[data] == ''){
             resultObj.result = false;
             resultObj.errMessage = '빈값이 존재합니다.';
@@ -18,11 +28,27 @@ exports.write = async (req,res)=>{
             if(!email_reg.test(body[data])){
                 resultObj.result = false;
                 resultObj.errMessage = "유효하지 않은 이메일 입니다.";
-                return false;
+                return resultObj;
             }
-            let emailExists = model.emailExists(body);
+            if(!employeeModel.emailExists(body)){
+                resultObj.result = false;
+                resultObj.errMessage = "이미 사용중인 이메일 입니다.";
+                return resultObj;
+            }
+        }
+        if(data == 'mobile_number' && !phone_reg.test(body[data])){
+            resultObj.result = false;
+            resultObj.errMessage = "유효하지 않은 핸드폰번호 입니다.";
+            return resultObj;
+        }
+        if(data == 'birth_date' && !date_reg.test(body[data])){
+            resultObj.result = false;
+            resultObj.errMessage = "유효하지 않은 날짜입니다.";
+            return resultObj;
         }
     })
 
-
+    body.start_date = new Date();
+    resultObj.result = employeeModel.write(body);
+    return resultObj;
 }
