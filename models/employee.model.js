@@ -76,6 +76,7 @@ exports.write = (body)=>{
                 ,mobile_number
                 ,start_date
                 ,code
+                ,password
             )VALUES(
                 ?
                 ,?
@@ -83,9 +84,10 @@ exports.write = (body)=>{
                 ,?
                 ,?
                 ,?
+                ,?
             )
         `;
-        db.query(sql,[body.email,body.name,body.birth_date,body.mobile_number,body.start_date,body.code],(err,data)=>{
+        db.query(sql,[body.email,body.name,body.birth_date,body.mobile_number,body.start_date,body.code,body.password],(err,data)=>{
             if(err) reject({result : false});
             if(!err) resolve({result : true});
         })
