@@ -8,6 +8,7 @@ block content
     tr 
       th 이름
       th 휴대폰번호
+      th 상태
       th 입사일
       th 퇴사일
     if result.list.length == 0
@@ -15,9 +16,10 @@ block content
         td(colspan=4) 데이터가 존재하지 않습니다.
     else 
       each list in result.list
-        tr 
+        tr.link.pointer(data-code=list.code)
           td=list.name 
           td=list.mobile_number 
+          td=list.status
           td=list.start_date 
           if list.end_date == null
             td.text_center -

@@ -1,4 +1,5 @@
 const employeeModel = require("../models/employee.model");
+const randomUtil = require("../util/randomUtil");
 
 exports.list = async (req,res)=>{
     let body = req.body;
@@ -6,7 +7,23 @@ exports.list = async (req,res)=>{
         body.page = 1;
     }
     let resultObj = {};
-    resultObj.list = await employeeModel.list(body);
+    let list = await employeeModel.list(body);
+    list.forEach((data)=>{
+        let status = '재직';
+        if(data.end_date != null && data.end_date != ''){
+            let today = new Date();
+            today.setHours(0,0,0,0);
+
+            let endDate = new Date(data.end_date);
+            endDate.setHours(0,0,0,0);
+
+            if(today >= endDate){
+                status = '퇴직';
+            }
+        }
+        data.status = status;
+    })
+    resultObj.list = list;
     return resultObj;
 }
 
@@ -18,37 +35,56 @@ exports.write = async (req,res)=>{
     const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
     let resultObj = {};
-    Object.keys(body).forEach(async (data)=>{
+    let result = true;
+    let message = '';
+    Object.keys(body).forEach((data)=>{
         if(body[data] == ''){
-            resultObj.result = false;
-            resultObj.errMessage = '빈값이 존재합니다.';
-            return resultObj;
-        }
-        if(data === 'email'){
-            if(!email_reg.test(body[data])){
-                resultObj.result = false;
-                resultObj.errMessage = "유효하지 않은 이메일 입니다.";
-                return resultObj;
-            }
-            if(!employeeModel.emailExists(body)){
-                resultObj.result = false;
-                resultObj.errMessage = "이미 사용중인 이메일 입니다.";
-                return resultObj;
-            }
-        }
-        if(data == 'mobile_number' && !phone_reg.test(body[data])){
-            resultObj.result = false;
-            resultObj.errMessage = "유효하지 않은 핸드폰번호 입니다.";
-            return resultObj;
-        }
-        if(data == 'birth_date' && !date_reg.test(body[data])){
-            resultObj.result = false;
-            resultObj.errMessage = "유효하지 않은 날짜입니다.";
-            return resultObj;
+            result = false;
+            message = '빈값이 존재합니다.';
         }
     })
+    if(result == false){
+        resultObj.result = result;
+        resultObj.errMessage = message;
+        return resultObj;
+    }
 
+    if(!email_reg.test(body.email)){
+        resultObj.result = false;
+        resultObj.errMessage = "유효하지 않은 이메일 입니다.";
+        return resultObj;
+    }
+    const emailExists = await employeeModel.emailExists(body);
+    if(emailExists > 0){
+        resultObj.result = false;
+        resultObj.errMessage = "이미 사용중인 이메일 입니다.";
+        return resultObj;
+    }
+    if(!phone_reg.test(body.mobile_number)){
+        resultObj.result = false;
+        resultObj.errMessage = "유효하지 않은 핸드폰번호 입니다.";
+        return resultObj;
+    }
+    if(!date_reg.test(body.birth_date)){
+        resultObj.result = false;
+        resultObj.errMessage = "유효하지 않은 날짜입니다.";
+        return resultObj;
+    }
+
+    let exists = false;
+    while(exists == false){
+        let randomCode = randomUtil.createRandomCode(13);
+        if(await employeeModel.codeExists(randomCode) == 0){
+            exists = true;
+        }
+        body.code = randomCode;
+    }
     body.start_date = new Date();
-    resultObj.result = employeeModel.write(body);
+    resultObj.result = await employeeModel.write(body);
     return resultObj;
+}
+
+exports.detail = async (code)=>{
+    let result = await employeeModel.detail(code);
+    return result;
 }

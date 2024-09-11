@@ -14,4 +14,8 @@ router.post('/write',(req,res)=>{
     controller.post.write(req,res);
 })
 
+router.get('/:code',(req,res)=>{
+    controller.get.detail(req,res);
+})
+
 module.exports = router;

@@ -37,6 +37,9 @@ button.addEventListener('click',()=>{
             return false;
         }
     })
+    .catch(err=>{
+        alert('저장에 실패하였습니다.');
+    })
 })
 
 //focus 이벤트

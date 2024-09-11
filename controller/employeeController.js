@@ -3,19 +3,25 @@ const service = require('../service/employeeService');
 const get = {
     list : async (req,res) =>{
         let result = await service.list(req,res);
-        console.log(result);
         res.render('employee/list',{result : result});
     },
+    
     write : (req,res)=>{
         res.render("employee/write");
+    },
+
+    detail : async (req,res)=>{
+        let result = await service.detail(req.params.code);
+        console.log(result);
+        res.render('employee/detail',{result : result});
     }
+
 }
 
 const post = {
     write : async (req,res)=>{
         try {
             let response = await service.write(req,res);
-            console.log(response);
             res.json(response);
         } catch (error) {
             res.json({
