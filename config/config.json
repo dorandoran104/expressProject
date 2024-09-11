@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": 12341234,
-    "database": "database_development",
+    "database": "node_project",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": 12341234,
-    "database": "database_test",
+    "database": "node_project",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": 12341234,
-    "database": "database_production",
+    "database": "node_project",
     "host": "localhost",
     "dialect": "mysql"
   }
