@@ -4,5 +4,23 @@ block content
   h1= title
   p Welcome to employee
   button(type="button") 등록
-
+  table 
+    tr 
+      th 이름
+      th 휴대폰번호
+      th 입사일
+      th 퇴사일
+    if result.list.length == 0
+      tr 
+        td(colspan=4) 데이터가 존재하지 않습니다.
+    else 
+      each list in result.list
+        tr 
+          td=list.name 
+          td=list.mobile_number 
+          td=list.start_date 
+          if list.end_date == null
+            td.text_center -
+          else 
+            td=list.end_date 
   script(src="/javascripts/employee/list.js") 

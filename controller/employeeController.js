@@ -1,8 +1,10 @@
 const service = require('../service/employeeService');
 
 const get = {
-    list : (req,res) =>{
-        res.render('employee/list');
+    list : async (req,res) =>{
+        let result = await service.list(req,res);
+        console.log(result);
+        res.render('employee/list',{result : result});
     },
     write : (req,res)=>{
         res.render("employee/write");
@@ -11,7 +13,16 @@ const get = {
 
 const post = {
     write : async (req,res)=>{
-        let response = await service.write(req,res);
+        try {
+            let response = await service.write(req,res);
+            console.log(response);
+            res.json(response);
+        } catch (error) {
+            res.json({
+                result : false
+                ,errMessage : '오류가 발생되었습니다.'
+            })
+        }
     }
 }
 
