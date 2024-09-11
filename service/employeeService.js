@@ -1,5 +1,6 @@
 const employeeModel = require("../models/employee.model");
 const randomUtil = require("../util/randomUtil");
+const bcryptUtil = require('../util/bcryptUtil');
 
 exports.list = async (req,res)=>{
     let body = req.body;
@@ -70,6 +71,15 @@ exports.write = async (req,res)=>{
         resultObj.errMessage = "유효하지 않은 날짜입니다.";
         return resultObj;
     }
+    
+    let encode = bcryptUtil.createBcrypt(body.password);
+    if(encode == null || encode == ''){
+        resultObj.result = false;
+        resultObj.errMessage = '오류가 발생했습니다.';
+        return resultObj;
+    }
+
+    body.password = encode;
 
     let exists = false;
     while(exists == false){
@@ -80,6 +90,8 @@ exports.write = async (req,res)=>{
         body.code = randomCode;
     }
     body.start_date = new Date();
+    //비밀번호 암호화
+
     resultObj.result = await employeeModel.write(body);
     return resultObj;
 }
