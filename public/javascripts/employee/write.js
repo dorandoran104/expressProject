@@ -30,12 +30,15 @@ button.addEventListener('click',()=>{
         console.log(res);
         if(res.result){
             alert('저장되었습니다.');
-            location.href = '/employee/list';
+            // location.href = '/employee/list';
         }
         if(!res.result){
             alert(res.errMessage);
             return false;
         }
+    })
+    .catch(err=>{
+        alert('저장에 실패하였습니다.');
     })
 })
 
