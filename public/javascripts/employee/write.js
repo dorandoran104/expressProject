@@ -19,6 +19,24 @@ button.addEventListener('click',()=>{
         }
         param[input.getAttribute('name')] = input.value;
     }
+
+    fetch("/employee/write",{
+        method : "post"
+        ,body : JSON.stringify(param)
+        ,headers : {
+            'content-type' : 'application/json'
+        }
+    }).then((res)=> res.json())
+    .then((res)=>{
+        if(res.result){
+            alert('저장되었습니다.');
+            location.href = '/employee/list';
+        }
+        if(!res.result){
+            alert(res.errMessage);
+            return false;
+        }
+    })
 })
 
 //focus 이벤트

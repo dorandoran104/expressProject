@@ -1,3 +1,5 @@
+const service = require('../service/employeeService');
+
 const get = {
     list : (req,res) =>{
         res.render('employee/list');
@@ -8,7 +10,9 @@ const get = {
 }
 
 const post = {
-
+    write : async (req,res)=>{
+        let response = await service.write(req,res);
+    }
 }
 
 module.exports = {
