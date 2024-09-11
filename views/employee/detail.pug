@@ -3,7 +3,6 @@ extends ../include/header
 block content
   h1= title
   p Welcome to employee
-  button(type="button") 등록
   table 
     tr 
       th 이름
@@ -14,9 +13,11 @@ block content
     tr 
       th 입사일
       td 
-        input(type="text", name="start_date", value=result.start_date)
+        input.date_input(type="text", name="start_date", value=result.start_date)
     tr 
       th 퇴사일
       td 
-        input(type="text", name="end_date", value=result.end_date)
-  //- script(src="/javascripts/employee/list.js") 
+        input.date_input(type="text", name="end_date", value=result.end_date)
+  button.save_btn 저장
+  button(onclick="history.back()") 뒤로가기
+  script(src="/javascripts/employee/detail.js") 
