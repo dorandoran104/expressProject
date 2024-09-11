@@ -7,7 +7,23 @@ exports.list = async (req,res)=>{
         body.page = 1;
     }
     let resultObj = {};
-    resultObj.list = await employeeModel.list(body);
+    let list = await employeeModel.list(body);
+    list.forEach((data)=>{
+        let status = '재직';
+        if(data.end_date != null && data.end_date != ''){
+            let today = new Date();
+            today.setHours(0,0,0,0);
+
+            let endDate = new Date(data.end_date);
+            endDate.setHours(0,0,0,0);
+
+            if(today >= endDate){
+                status = '퇴직';
+            }
+        }
+        data.status = status;
+    })
+    resultObj.list = list;
     return resultObj;
 }
 
@@ -66,4 +82,9 @@ exports.write = async (req,res)=>{
     body.start_date = new Date();
     resultObj.result = await employeeModel.write(body);
     return resultObj;
+}
+
+exports.detail = async (code)=>{
+    let result = await employeeModel.detail(code);
+    return result;
 }

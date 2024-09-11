@@ -1,0 +1,22 @@
+extends ../include/header
+
+block content
+  h1= title
+  p Welcome to employee
+  button(type="button") 등록
+  table 
+    tr 
+      th 이름
+      td=result.name
+    tr
+      th 휴대폰번호
+      td=result.mobile_number
+    tr 
+      th 입사일
+      td 
+        input(type="text", name="start_date", value=result.start_date)
+    tr 
+      th 퇴사일
+      td 
+        input(type="text", name="end_date", value=result.end_date)
+  //- script(src="/javascripts/employee/list.js") 
