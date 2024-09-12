@@ -1,6 +1,4 @@
-const table = new simpleDatatables.DataTable('#datatable')
-
-let button = document.querySelector("button");
+let button = document.querySelector(".add_btn > button");
 
 button.addEventListener('click',()=>{
     location.href = '/employee/write';

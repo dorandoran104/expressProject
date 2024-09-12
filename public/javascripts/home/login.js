@@ -1,7 +1,17 @@
+
+
 let button = document.querySelector('#login_btn');
 
 button.addEventListener('click',()=>{
     login();
+})
+
+document.querySelectorAll('.container input').forEach((el)=>{
+    if(el.getAttribute('id') === 'yourUsername') el.focus();
+    
+    el.addEventListener('keydown',(e)=>{
+        if(e.keyCode == 13) login();
+    })
 })
 
 function login(){

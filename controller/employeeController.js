@@ -3,10 +3,9 @@ const service = require('../service/employeeService');
 const get = {
     list : async (req,res) =>{
         let result = await service.list(req,res);
+        console.log(result);
         res.render('employee/list',{result : result});
-        // res.render('employee/list')
     },
-    
     write : (req,res)=>{
         res.render("employee/write");
     },
