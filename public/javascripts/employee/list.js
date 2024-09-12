@@ -1,3 +1,5 @@
+const table = new simpleDatatables.DataTable('#datatable')
+
 let button = document.querySelector("button");
 
 button.addEventListener('click',()=>{
