@@ -1,4 +1,4 @@
-let button = document.querySelector('button.submit');
+let button = document.querySelector('#login_btn');
 
 button.addEventListener('click',()=>{
     login();

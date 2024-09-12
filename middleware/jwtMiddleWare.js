@@ -5,7 +5,7 @@ const authJWT = (req,res,next)=>{
     
     if(token == null || token == ''){
         console.log('@@@@@@@@ token null @@@@@@@@@')
-        return res.render('home/error',{httpStatus : 401});
+        return res.render('home/401',{httpStatus : 401});
     }
     try {
         const checkToken = jwt.checkToken(token);
