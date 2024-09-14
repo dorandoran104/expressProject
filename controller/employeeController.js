@@ -3,7 +3,6 @@ const service = require('../service/employeeService');
 const get = {
     list : async (req,res) =>{
         let result = await service.list(req,res);
-        console.log(result);
         res.render('employee/list',{result : result});
     },
     write : (req,res)=>{
@@ -12,7 +11,6 @@ const get = {
 
     detail : async (req,res)=>{
         let result = await service.detail(req.params.code);
-        console.log(result);
         res.render('employee/detail',{result : result});
     }
 

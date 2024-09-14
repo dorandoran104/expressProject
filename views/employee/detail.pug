@@ -1,24 +1,59 @@
-extends ../include/header
+extends ../include/head
 
 block content
-  h1= title
-  p Welcome to employee
-  table 
-    tr 
-      th 이름
-      td=result.name
-    tr
-      th 휴대폰번호
-      td=result.mobile_number
-    tr 
-      th 입사일
-      td 
-        input.date_input(type="text", name="start_date", value=result.start_date)
-    tr 
-      th 퇴사일
-      td 
-        input.date_input(type="text", name="end_date", value=result.end_date)
-  button.save_btn 저장
-  button(onclick="history.back()") 뒤로가기
+  main#main.main
+    .pagetitle
+      h1 직원관리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/") 대시보드
+          li.breadcrumb-item
+            a(href="/employee/list") 직원관리
+          li.breadcrumb-item.active 상세
+    section.section 
+      .row 
+        div.card
+          .card-body
+            h5.card-title 직원 등록
+            //- p For custom Bootstrap form validation messages, you’ll need to add the 
+            //-   code novalidate 
+            //-   boolean attribute to your 
+            //-   code &lt;form&gt;. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript.
+
+            // Custom Styled Validation
+            form.row.g-3.needs-validation(novalidate)
+              input(type="hidden", name="code" value=result.code)
+              .col-md-6
+                label.form-label(for="validationCustom01") 이름
+                input.form-control(type="text", id="validationCustom01", name="name", value=result.name)
+              .col-md-6
+                label.form-label(for="validationCustomUsername") 휴대전화
+                .input-group.has-validation
+                  //- span.input-group-text(id="inputGroupPrepend") @
+                  input.form-control(type="text", id="validationCustomUsername", aria-describedby="inputGroupPrepend",name="mobile_number", value=result.mobile_number)
+              .col-md-6
+                label.form-label(for="validationCustom05") 생년월일
+                input.form-control(type="text", id="validationCustom05", name="birth_date", value=result.birth_date)
+                .invalid-feedback Please provide a valid zip.
+              .col-md-3
+                label.form-label(for="validationCustom03") 입사일
+                input.form-control(type="text", id="validationCustom03", name="start_date", value=result.start_date)
+              .col-md-3
+                label.form-label(for="validationCustom04") 퇴사일
+                input.form-control(type="text", id="validationCustom03", name="end_date", value=result.end_date)
+              .col-md-6
+                label.form-label(for="validationCustom03") 이메일
+                input.form-control(type="email", id="validationCustom03", name="email", value=result.email)
+              .col-md-6
+                label.form-label(for="validationCustom04") 비밀번호
+                input.form-control(type="password", id="validationCustom03", name="password")
+              //- .col-12
+              //-   .form-check
+              //-     input.form-check-input(type="checkbox", value="", id="invalidCheck", required)
+              //-     label.form-check-label(for="invalidCheck") Agree to terms and conditions
+              //-     .invalid-feedback You must agree before submitting.
+              .col-12
+                button.btn.btn-secondary.me-1.history_back(type="button") 뒤로가기
+                button.btn.btn-primary.write_btn(type="button") 등록
   script(src="/javascripts/employee/detail.js") 
-block footer

@@ -15,49 +15,39 @@ block content
       .row 
         div.card
           .card-body
-            h5.card-title Custom Styled Validation
-            p For custom Bootstrap form validation messages, you’ll need to add the 
-              code novalidate 
-              boolean attribute to your 
-              code &lt;form&gt;. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript.
+            h5.card-title 직원 등록
+            //- p For custom Bootstrap form validation messages, you’ll need to add the 
+            //-   code novalidate 
+            //-   boolean attribute to your 
+            //-   code &lt;form&gt;. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript.
 
             // Custom Styled Validation
             form.row.g-3.needs-validation(novalidate)
               .col-md-6
                 label.form-label(for="validationCustom01") 이름
-                input.form-control(type="text", id="validationCustom01", value="")
-                //- .valid-feedback Looks good!
-              //- .col-md-4
-              //-   label.form-label(for="validationCustom02") Last name
-              //-   input.form-control(type="text", id="validationCustom02", value="Doe", required)
-              //-   .valid-feedback Looks good!
+                input.form-control(type="text", id="validationCustom01", value="" name="name")
               .col-md-6
-                label.form-label(for="validationCustomUsername") 이메일
+                label.form-label(for="validationCustomUsername") 휴대전화
                 .input-group.has-validation
-                  span.input-group-text(id="inputGroupPrepend") @
-                  input.form-control(type="email", id="validationCustomUsername", aria-describedby="inputGroupPrepend", required)
-                  .invalid-feedback Please choose a username.
+                  //- span.input-group-text(id="inputGroupPrepend") @
+                  input.form-control(type="text", id="validationCustomUsername", aria-describedby="inputGroupPrepend",name="mobile_number")
               .col-md-6
-                label.form-label(for="validationCustom03") City
-                input.form-control(type="text", id="validationCustom03", required)
-                .invalid-feedback Please provide a valid city.
-              .col-md-3
-                label.form-label(for="validationCustom04") State
-                select.form-select(id="validationCustom04", required)
-                  option(selected, disabled, value="") Choose...
-                  option ...
-                .invalid-feedback Please select a valid state.
-              .col-md-3
-                label.form-label(for="validationCustom05") Zip
-                input.form-control(type="text", id="validationCustom05", required)
+                label.form-label(for="validationCustom05") 생년월일
+                input.form-control(type="text", id="validationCustom05", name="birth_date")
                 .invalid-feedback Please provide a valid zip.
+              .col-md-3
+                label.form-label(for="validationCustom03") 이메일
+                input.form-control(type="email", id="validationCustom03", name="email")
+              .col-md-3
+                label.form-label(for="validationCustom04") 비밀번호
+                input.form-control(type="password", id="validationCustom03", name="password")
+              //- .col-12
+              //-   .form-check
+              //-     input.form-check-input(type="checkbox", value="", id="invalidCheck", required)
+              //-     label.form-check-label(for="invalidCheck") Agree to terms and conditions
+              //-     .invalid-feedback You must agree before submitting.
               .col-12
-                .form-check
-                  input.form-check-input(type="checkbox", value="", id="invalidCheck", required)
-                  label.form-check-label(for="invalidCheck") Agree to terms and conditions
-                  .invalid-feedback You must agree before submitting.
-              .col-12
-                button.btn.btn-primary(type="button") Submit form
+                button.btn.btn-primary.write_btn(type="button") 등록
 
 
   script(src="/javascripts/employee/write.js")   

@@ -5,8 +5,8 @@ const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 let button = document.querySelector("button.write_btn");
 
 button.addEventListener('click',()=>{
-    const table = document.querySelector("table");
-    const inputs = table.querySelectorAll('input');
+    const form = document.querySelector("form.row.g-3.needs-validation");
+    const inputs = form.querySelectorAll('input');
 
     let param = {};
     for(let i = 0; i<inputs.length; i++){
@@ -71,6 +71,7 @@ document.querySelector('input[name="birth_date"]').addEventListener('blur',(e)=>
 })
 
 document.querySelector('input[name="mobile_number"]').addEventListener('input',(e)=>{
+    console.log('ss')
     e.target.setAttribute('maxlength',13);
     let value = e.target.value;
     value = e.target.value

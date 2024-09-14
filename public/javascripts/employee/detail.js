@@ -22,9 +22,6 @@ document.querySelectorAll('input.date_input').forEach((el)=>{
     })
 })
 
-document.querySelector('button.save_btn').addEventListener('click',()=>{
-    if(confirm('저장하시겠습니까?')){
-        const param = new URLSearchParams(window.location.code);
-        console.log(param);
-    }
+document.querySelector('button.history_back').addEventListener('click',()=>{
+    history.back();
 })
