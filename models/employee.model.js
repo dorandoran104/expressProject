@@ -29,6 +29,7 @@ exports.detail = async (code)=>{
                 ,DATE_FORMAT(end_date,'%Y-%m-%d') as end_date
                 ,email
                 ,code
+                ,DATE_FORMAT(birth_date,'%Y-%m-%d') as birth_date
             FROM employee
             WHERE code = ?
         `;

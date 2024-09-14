@@ -1,28 +1,43 @@
-extends ../include/header
+extends ../include/head
 
 block content
-  h1= title
-  p Welcome to employee
-  button(type="button") 등록
-  table 
-    tr 
-      th 이름
-      th 휴대폰번호
-      th 상태
-      th 입사일
-      th 퇴사일
-    if result.list.length == 0
-      tr 
-        td(colspan=4) 데이터가 존재하지 않습니다.
-    else 
-      each list in result.list
-        tr.link.pointer(data-code=list.code)
-          td=list.name 
-          td=list.mobile_number 
-          td=list.status
-          td=list.start_date 
-          if list.end_date == null
-            td.text_center -
-          else 
-            td=list.end_date 
+  main#main.main 
+    .pagetitle
+      h1 직원관리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/") 대시보드
+          //- li.breadcrumb-item Tables
+          li.breadcrumb-item.active 직원관리
+    section.section
+      div.add_btn
+        button.btn.btn-primary 등록
+      .row
+        .card
+          .card-body
+            //- h5.card-title Default Table
+            // Default Table
+            table.table
+              thead
+                tr
+                  th(scope="col") 이름
+                  th(scope="col") 휴대폰번호
+                  th(scope="col") 재직 여부
+                  th(scope="col") 입사일
+                  th(scope="col") 퇴사일
+              tbody
+                if result.list.length == 0
+                  tr(colspan='5')
+                    td 데이터가 존재하지 않습니다.
+                else 
+                  for list in result.list
+                    tr.pointer.link(data-code=list.code)
+                      th=list.name
+                      td=list.mobile_number
+                      td=list.status
+                      td=list.start_date
+                      td=list.end_date == null ? '-' : list.end_date
+                
+
   script(src="/javascripts/employee/list.js") 
