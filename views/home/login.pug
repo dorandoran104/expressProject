@@ -1,28 +1,75 @@
 doctype html
-html
+html(lang="KOR")
   head
-    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous")
-    link(rel="stylesheet", href="/stylesheets/home/login.css")
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Dashboard - NiceAdmin Bootstrap Template
+    meta(name="description" content="")
+    meta(name="keywords" content="")
+
+    // Favicons
+    link(rel="icon" href="/images/favicon.png")
+    link(rel="apple-touch-icon" href="/images/apple-touch-icon.png")
+
+    // Google Fonts
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i")
+
+    // Vendor CSS Files
+    link(rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/vendor/bootstrap-icons/bootstrap-icons.css")
+    link(rel="stylesheet" href="/vendor/boxicons/css/boxicons.min.css")
+    link(rel="stylesheet" href="/vendor/quill/quill.snow.css")
+    link(rel="stylesheet" href="/vendor/quill/quill.bubble.css")
+    link(rel="stylesheet" href="/vendor/remixicon/remixicon.css")
+    link(rel="stylesheet" href="/vendor/simple-datatables/style.css")
+
+    // Template Main CSS File
+    link(rel="stylesheet" href="/stylesheets/style.css")
+    
+    // =======================================================
+    // * Template Name: NiceAdmin
+    // * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    // * Updated: Apr 20 2024 with Bootstrap v5.3.3
+    // * Author: BootstrapMade.com
+    // * License: https://bootstrapmade.com/license/
+    // ========================================================
   body
-    section.login
-      .login_box
-        .left
-          .top_link
-            //- a(href="#")
-            //-   img(src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download", alt="Return home")
-            //-   | Return home
-          .contact
-            form.login_form(action="")
-              h3 SIGN IN
-              input(type="text", placeholder="EMAIL",name="email")
-              input(type="password", placeholder="PASSWORD",name="password")
-              button.submit(type="button") Login 
-            //-   button.submit LET'S GO
-        .right
-          .right-text
-            h2 LONYX
-            h5 A UX BASED CREATIVE AGENCY
-          .right-inductor
-            img(src="https://lh3.googleusercontent.com/fife/ABSRlIoGiXn2r0SBm7bjFHea6iCUOyY0N2SrvhNUT-orJfyGNRSMO2vfqar3R-xs5Z4xbeqYwrEMq2FXKGXm-l_H6QAlwCBk9uceKBfG-FjacfftM0WM_aoUC_oxRSXXYspQE3tCMHGvMBlb2K1NAdU6qWv3VAQAPdCo8VwTgdnyWv08CmeZ8hX_6Ty8FzetXYKnfXb0CTEFQOVF4p3R58LksVUd73FU6564OsrJt918LPEwqIPAPQ4dMgiH73sgLXnDndUDCdLSDHMSirr4uUaqbiWQq-X1SNdkh-3jzjhW4keeNt1TgQHSrzW3maYO3ryueQzYoMEhts8MP8HH5gs2NkCar9cr_guunglU7Zqaede4cLFhsCZWBLVHY4cKHgk8SzfH_0Rn3St2AQen9MaiT38L5QXsaq6zFMuGiT8M2Md50eS0JdRTdlWLJApbgAUqI3zltUXce-MaCrDtp_UiI6x3IR4fEZiCo0XDyoAesFjXZg9cIuSsLTiKkSAGzzledJU3crgSHjAIycQN2PH2_dBIa3ibAJLphqq6zLh0qiQn_dHh83ru2y7MgxRU85ithgjdIk3PgplREbW9_PLv5j9juYc1WXFNW9ML80UlTaC9D2rP3i80zESJJY56faKsA5GVCIFiUtc3EewSM_C0bkJSMiobIWiXFz7pMcadgZlweUdjBcjvaepHBe8wou0ZtDM9TKom0hs_nx_AKy0dnXGNWI1qftTjAg=w1920-h979-ft")
+    main
+    .container
+      section.section.register.min-vh-100.d-flex.flex-column.align-items-center.justify-content-center.py-4
+        .container
+          .row.justify-content-center
+            .col-lg-4.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+              .d-flex.justify-content-center.py-4
+                a(href="index.html" class="logo d-flex align-items-center w-auto")
+                  img(src="/images/logo.png" alt="")
+                  span.d-none.d-lg-block NiceAdmin
+              .card.mb-3
+                .card-body
+                  .pt-4.pb-2
+                    //- h5.card-title.text-center.pb-0.fs-4 Login to Your Account
+                    //- p.text-center.small Enter your username & password to login
+                  form.row.g-3.needs-validation(novalidate)
+                    .col-12
+                      label.form-label(for="yourUsername") 이메일
+                      .input-group.has-validation
+                        span.input-group-text#inputGroupPrepend @
+                        input.form-control(type="text" name="email" id="yourUsername" required)
+                        div.invalid-feedback Please enter your username.
+                    .col-12
+                      label.form-label(for="yourPassword") 비밀번호
+                      input.form-control(type="password" name="password" id="yourPassword" required)
+                      div.invalid-feedback Please enter your password!
+                    //- .col-12
+                    //-   .form-check
+                    //-     input.form-check-input(type="checkbox" name="remember" value="true" id="rememberMe")
+                    //-     label.form-check-label(for="rememberMe") Remember me
+                    .col-12
+                      button#login_btn.btn.btn-primary.w-100(type="button") 로그인
+                    .col-12
+                      //- p.small.mb-0 Don't have account? a(href="pages-register.html") Create an account
+              .credits  
+                | Designed by
+                a(href="https://bootstrapmade.com/") BootstrapMade
     script(src="/javascripts/home/login.js") 
-  block footer

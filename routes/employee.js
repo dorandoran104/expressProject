@@ -19,4 +19,6 @@ router.get('/:code',authMiddleware,(req,res)=>{
     controller.get.detail(req,res);
 })
 
+
+
 module.exports = router;

@@ -5,14 +5,12 @@ const get = {
         let result = await service.list(req,res);
         res.render('employee/list',{result : result});
     },
-    
     write : (req,res)=>{
         res.render("employee/write");
     },
 
     detail : async (req,res)=>{
         let result = await service.detail(req.params.code);
-        console.log(result);
         res.render('employee/detail',{result : result});
     }
 
