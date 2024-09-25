@@ -34,14 +34,14 @@ block content
                   input.form-control(type="text", id="validationCustomUsername", aria-describedby="inputGroupPrepend",name="mobile_number", value=result.mobile_number)
               .col-md-6
                 label.form-label(for="validationCustom05") 생년월일
-                input.form-control(type="text", id="validationCustom05", name="birth_date", value=result.birth_date)
+                input.form-control.date_input(type="text", id="validationCustom05", name="birth_date", value=result.birth_date)
                 .invalid-feedback Please provide a valid zip.
               .col-md-3
                 label.form-label(for="validationCustom03") 입사일
-                input.form-control(type="text", id="validationCustom03", name="start_date", value=result.start_date)
+                input.form-control.date_input(type="text", id="validationCustom03", name="start_date", value=result.start_date)
               .col-md-3
                 label.form-label(for="validationCustom04") 퇴사일
-                input.form-control(type="text", id="validationCustom03", name="end_date", value=result.end_date)
+                input.form-control.date_input(type="text", id="validationCustom03", name="end_date", value=result.end_date)
               .col-md-6
                 label.form-label(for="validationCustom03") 이메일
                 input.form-control(type="email", id="validationCustom03", name="email", value=result.email)

@@ -28,6 +28,14 @@ const post = {
             })
         }
     }
+    ,detail : async (req,res)=>{
+        try{
+            let response = await service.modify(req);
+            res.json(response);
+        }catch(error){
+            res.json({result : false, errMessage : '오류가 발생되었습니다.'})
+        }
+    }
 }
 
 module.exports = {

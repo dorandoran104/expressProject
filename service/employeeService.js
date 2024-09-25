@@ -2,6 +2,10 @@ const employeeModel = require("../models/employee.model");
 const randomUtil = require("../util/randomUtil");
 const bcryptUtil = require('../util/bcryptUtil');
 
+const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+
 exports.list = async (req,res)=>{
     let body = req.body;
     if(body.page == null || body.page == ''){
@@ -30,11 +34,6 @@ exports.list = async (req,res)=>{
 
 exports.write = async (req,res)=>{
     const body = req.body;
-
-    const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-    const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-
     let resultObj = {};
     let result = true;
     let message = '';
@@ -99,4 +98,32 @@ exports.write = async (req,res)=>{
 exports.detail = async (code)=>{
     let result = await employeeModel.detail(code);
     return result;
+}
+
+exports.modify = async (req)=>{
+    const code = req.params.code;
+    const body = req.body;
+    let response = {};
+    Object.keys(body).forEach((data)=>{
+        const value = body[data];
+        if(data != 'end_date' && data != 'password'  && value != ''){
+            response.result = false;
+            response.errMessage = '빈값이 존재합니다.';
+            return response;
+        }
+
+        if((data == 'end_date' && value != '') || data == 'start_date' || data == 'birth_date'){
+            if(!date_reg.test(value)){
+                response.result = false;
+                response.errMessage = '유효하지 않은 날짜형식입니다.';
+                return response;
+            }
+        }
+
+        if(data == 'email' && !email_reg.test(value)){
+            
+        }
+        
+    })
+
 }

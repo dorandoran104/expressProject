@@ -19,6 +19,8 @@ router.get('/:code',authMiddleware,(req,res)=>{
     controller.get.detail(req,res);
 })
 
-
+router.put('/:code',authMiddleware,(req,res)=>{
+    controller.post.modify(req,res);
+})
 
 module.exports = router;
