@@ -28,11 +28,13 @@ const post = {
             })
         }
     }
-    ,detail : async (req,res)=>{
+    ,modify : async (req,res)=>{
         try{
             let response = await service.modify(req);
+            
             res.json(response);
         }catch(error){
+            console.log(error);
             res.json({result : false, errMessage : '오류가 발생되었습니다.'})
         }
     }

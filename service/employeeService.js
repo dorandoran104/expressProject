@@ -103,27 +103,64 @@ exports.detail = async (code)=>{
 exports.modify = async (req)=>{
     const code = req.params.code;
     const body = req.body;
-    let response = {};
+    console.log(body);
+    let resultObj = {};
+    let blankFlag = false;
+
     Object.keys(body).forEach((data)=>{
         const value = body[data];
-        if(data != 'end_date' && data != 'password'  && value != ''){
-            response.result = false;
-            response.errMessage = '빈값이 존재합니다.';
-            return response;
+        if(data != 'end_date' && data != 'password'  && value == ''){
+            blankFlag = true;
         }
-
-        if((data == 'end_date' && value != '') || data == 'start_date' || data == 'birth_date'){
-            if(!date_reg.test(value)){
-                response.result = false;
-                response.errMessage = '유효하지 않은 날짜형식입니다.';
-                return response;
-            }
-        }
-
-        if(data == 'email' && !email_reg.test(value)){
-            
-        }
-        
     })
 
+    if(blankFlag == true){
+        resultObj.result = false;
+        resultObj.errMessage = '빈값이 존재합니다.';
+        return resultObj;
+    }
+
+    if(!date_reg.test(body.start_date) || !date_reg.test(body.birth_date)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 날짜입니다.';
+        return resultObj;
+    }
+
+    if(body.end_date != null && body.end_date != '' && !date_reg.test(body.end_date)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 날짜입니다.';
+        return resultObj;
+    }
+
+    if(!email_reg.test(body.email)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 이메일입니다.';
+        return resultObj;
+    }
+
+    if(!phone_reg.test(body.mobile_number)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 휴대폰번호 입니다.'
+        return resultObj;
+    }
+
+    if(body.password != null && body.password != ''){
+        const bcryptPassword =  bcryptUtil.createBcrypt(body.password)
+        console.log(bcryptPassword)
+        if(bcryptPassword == null || bcryptPassword == ''){
+            resultObj.result = false;
+            resultObj.errMessage = '오류가 발생했습니다.';
+            return resultObj;
+        }
+        
+        body.password = bcryptPassword;
+    }
+
+    let result = await employeeModel.modify(body);
+    resultObj.result = result.result; 
+    if(!resultObj.result){
+        resultObj.errMessage = '저장에 실패하였습니다.'
+    }
+    console.log(resultObj);
+    return resultObj;
 }
