@@ -1,4 +1,4 @@
-const db = require('../index');
+const db = require('./index');
 
 exports.insert = (file) => {
     return new Promise((resolve,reject)=>{

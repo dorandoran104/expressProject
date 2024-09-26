@@ -1,5 +1,5 @@
-const goodsModel = require('../../models/admin/goods.model');
-const fileModel = require('../../models/admin/file.model');
+const goodsModel = require('../../models/goods.model');
+const fileModel = require('../../models/file.model');
 const randomUtil = require('../../util/randomUtil');
 
 exports.create = async (req,res)=>{

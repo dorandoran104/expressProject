@@ -1,4 +1,4 @@
-const homeModel = require('../../models/admin/home.model');
+const homeModel = require('../../models/home.model');
 const bcrypt = require('../../util/bcryptUtil');
 const jwt = require('../../util/jwtUtil');
 

@@ -1,4 +1,4 @@
-const employeeModel = require("../../models/admin/employee.model");
+const employeeModel = require("../../models/employee.model");
 const randomUtil = require("../../util/randomUtil");
 const bcryptUtil = require('../../util/bcryptUtil');
 

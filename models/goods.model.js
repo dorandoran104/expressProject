@@ -1,4 +1,4 @@
-const db = require('../index');
+const db = require('./index');
 
 exports.codeExists = (code)=>{
     return new Promise((resolve,reject)=>{
@@ -58,5 +58,32 @@ exports.update = (body)=>{
                 ,tax = ?
                 ,
         `
+    })
+}
+
+exports.getUserProductList = (category)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = `
+            SELECT
+                code
+                ,name
+                ,total_price
+                ,sold_out_yn
+                ,f.path
+            FROM goods g
+            INNER JOIN (
+                SELECT
+                    idx
+                    ,path
+                FROM file
+            ) f on f.idx = g.file_idx
+            WHERE first_category_idx = ?
+            AND use_yn = 'Y'
+            AND revealed_yn = 'Y'
+        `
+        db.query(sql,category,(err,data)=>{
+            if(err) reject(err);
+            else resolve(data)
+        })
     })
 }
