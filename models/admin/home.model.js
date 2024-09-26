@@ -1,4 +1,4 @@
-const db = require('./index');
+const db = require('../index');
 
 exports.getEmployee = (email)=>{
     return new Promise((resolve,reject)=>{

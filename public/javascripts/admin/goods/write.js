@@ -76,7 +76,7 @@ write_btn.addEventListener('click',()=>{
         formData.append('files',files[i])
     }
 
-    fetch('/goods/write',{
+    fetch('/admin/goods/write',{
         method : 'post',
         body : formData,
     }).then((res)=> res.json())

@@ -1,4 +1,4 @@
-const db = require('./index');
+const db = require('../index');
 
 exports.list = (body)=>{
     return new Promise((resolve,reject)=>{
@@ -13,7 +13,7 @@ exports.list = (body)=>{
             FROM employee
         `
         db.query(sql,(err,data)=>{
-            if(err) reject({result :false});
+            if(err) reject(1);
             if(!err) resolve(data);
         })
     })
