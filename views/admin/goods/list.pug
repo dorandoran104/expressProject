@@ -1,0 +1,43 @@
+extends ../include/head
+
+block content
+  main#main.main 
+    .pagetitle
+      h1 상품관리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/") 대시보드
+          //- li.breadcrumb-item Tables
+          li.breadcrumb-item.active 상품관리
+    section.section
+      div.add_btn
+        button.btn.btn-primary.add_goods 등록
+      .row
+        .card
+          .card-body
+            //- h5.card-title Default Table
+            // Default Table
+            table.table
+              thead
+                tr
+                  th(scope="col") 이름
+                  th(scope="col") 휴대폰번호
+                  th(scope="col") 재직 여부
+                  th(scope="col") 입사일
+                  th(scope="col") 퇴사일
+              tbody
+                //- if result.list.length == 0
+                  //- tr(colspan='5')
+                    //- td 데이터가 존재하지 않습니다.
+                //- else 
+                //-   for list in result.list
+                //-     tr.pointer.link(data-code=list.code)
+                //-       th=list.name
+                //-       td=list.mobile_number
+                //-       td=list.status
+                //-       td=list.start_date
+                //-       td=list.end_date == null ? '-' : list.end_date
+                
+
+  script(src="/javascripts/admin/goods/list.js") 

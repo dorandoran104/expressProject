@@ -317,3 +317,25 @@
     }
   
   })();
+
+const path = window.location.pathname;
+const targetPath = path.substring(0,path.lastIndexOf('/'));
+const nav = document.querySelectorAll('.sidebar-nav a.link')
+nav.forEach((el)=>{
+  let href = el.getAttribute('href')
+  href = href.substring(0,href.lastIndexOf('/'));
+  if(href == targetPath){
+    const parentEl = el.closest('.nav-item');
+    const closestEl = parentEl.querySelector('.collapsed');
+    closestEl.classList.remove('collapsed')
+    const showEl = parentEl.querySelector('.collapse');
+    if(showEl != null){
+      showEl.classList.add('show')
+      el.style.color = '#4154f1'
+    }
+  }
+})
+
+function addCommasToNumber(number) {
+  return Number(number).toString().replace(/[^0-9.]/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}

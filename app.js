@@ -4,9 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var employeeRouter = require("./routes/employee");
+var adminIndexRouter = require('./routes/admin/index');
+var adminEmployeeRouter = require("./routes/admin/employee");
+var adminGoodsRouter = require('./routes/admin/goods');
 
 // const authMiddleware = require('./middleware/jwtMiddleWare');
 
@@ -22,15 +22,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/employee",employeeRouter);
+app.use('/admin', adminIndexRouter);
+// app.use('/users', usersRouter);
+app.use("/admin/employee",adminEmployeeRouter);
+app.use('/admin/goods',adminGoodsRouter);
 
 // app.use(authMiddleware);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.render('admin/404')
+  // next(createError(404));
 });
 
 // error handler

@@ -1,0 +1,78 @@
+extends ../include/head
+
+block content
+  main#main.main
+    .pagetitle
+      h1 상품관리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/") 대시보드
+          li.breadcrumb-item
+            a(href="/goods/list") 상품관리
+          li.breadcrumb-item.active 등록
+    section.section 
+      .row 
+        div.card
+          .card-body
+            h5.card-title 상품등록
+            //- p For custom Bootstrap form validation messages, you’ll need to add the 
+            //-   code novalidate 
+            //-   boolean attribute to your 
+            //-   code &lt;form&gt;. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript.
+
+            // Custom Styled Validation
+            form.row.g-3.needs-validation(novalidate)
+              .col-md-12
+                label.form-label(for="validationCustom01") 상품명
+                input.form-control(type="text", id="validationCustom01", value="" name="name")
+              .col-md-4
+                label.form-label 가격
+                input.form-control.number_input(type="text", name="price")
+              .col-md-4 
+                label.form-label 부가세
+                input.form-control.number_input(type="text", name="tax")
+              .col-md-4 
+                label.form-label 총 가격
+                input.form-control.number_input(type="text", name="total_price")
+              .col-md-12 
+                input.form-check-input(type="checkbox", value="", name="use_yn")
+                label.form-check-label.ms-1.pointer(for="invalidCheck") 사용여부
+                input.form-check-input.ms-5(type="checkbox", value="", name="sold_out_yn")
+                label.form-check-label.ms-1.pointer(for="invalidCheck") 품절여부
+                input.form-check-input.ms-5(type="checkbox", value="", name="revealed_yn")
+                label.form-check-label.ms-1.pointer(for="invalidCheck") 노출 여부
+              .col-md-12
+                label.form-label 상품 이미지
+                  span.fw-lighter.fs-6.ms-2 ※ 이미지는 5개까지 등록 가능합니다.
+                .input-group
+                  input.form-control(aria-describedby="inputGroupFileAddon04", aria-label="Upload", type="file" , name="file")
+                  //- button#inputGroupFileAddon04.btn.btn-outline-secondary(type="button") 업로드
+              .img_area
+              //- .col-md-4 
+                
+              //- .col-md-6
+              //-   label.form-label(for="validationCustomUsername") 휴대전화
+              //-   .input-group.has-validation
+              //-     //- span.input-group-text(id="inputGroupPrepend") @
+              //-     input.form-control(type="text", id="validationCustomUsername", aria-describedby="inputGroupPrepend",name="mobile_number")
+              //- .col-md-6
+              //-   label.form-label(for="validationCustom05") 생년월일
+              //-   input.form-control(type="text", id="validationCustom05", name="birth_date")
+              //-   .invalid-feedback Please provide a valid zip.
+              //- .col-md-3
+              //-   label.form-label(for="validationCustom03") 이메일
+              //-   input.form-control(type="email", id="validationCustom03", name="email")
+              //- .col-md-3
+              //-   label.form-label(for="validationCustom04") 비밀번호
+              //-   input.form-control(type="password", id="validationCustom03", name="password")
+              //- .col-12
+              //-   .form-check
+              //-     input.form-check-input(type="checkbox", value="", id="invalidCheck", required)
+              //-     label.form-check-label(for="invalidCheck") Agree to terms and conditions
+              //-     .invalid-feedback You must agree before submitting.
+              .col-12
+                button.btn.btn-primary.write_btn(type="button") 등록
+
+
+  script(src="/javascripts/admin/goods/write.js")   
