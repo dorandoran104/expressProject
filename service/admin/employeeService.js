@@ -1,6 +1,6 @@
-const employeeModel = require("../models/employee.model");
-const randomUtil = require("../util/randomUtil");
-const bcryptUtil = require('../util/bcryptUtil');
+const employeeModel = require("../../models/admin/employee.model");
+const randomUtil = require("../../util/randomUtil");
+const bcryptUtil = require('../../util/bcryptUtil');
 
 const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;

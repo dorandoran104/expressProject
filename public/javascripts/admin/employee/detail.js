@@ -55,7 +55,7 @@ document.querySelector('button.write_btn').addEventListener('click',()=>{
     }
     
     if(confirm('저장하시겠습니까?')){
-        fetch('/employee/' + param.code,{
+        fetch('/admin/employee/' + param.code,{
             method : 'put'
             ,headers : {
                 'content-type' : 'application/json'

@@ -1,17 +1,17 @@
-const service = require('../service/employeeService');
+const service = require('../../service/admin/employeeService');
 
 const get = {
     list : async (req,res) =>{
         let result = await service.list(req,res);
-        res.render('employee/list',{result : result});
+        res.render('admin/employee/list',{result : result});
     },
     write : (req,res)=>{
-        res.render("employee/write");
+        res.render("admin/employee/write");
     },
 
     detail : async (req,res)=>{
         let result = await service.detail(req.params.code);
-        res.render('employee/detail',{result : result});
+        res.render('admin/employee/detail',{result : result});
     }
 
 }

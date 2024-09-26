@@ -21,7 +21,8 @@ exports.updateToken = (email,token)=>{
     return new Promise((resolve,reject)=>{
         let sql = `
             UPDATE employee SET
-                token = ?
+                access_token = ?
+                
             WHERE email = ?
         `
         db.query(sql,[token,email],(err,data)=>{

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require('../middleware/jwtMiddleWare');
-const controller = require("../controller/employeeController");
+const authMiddleware = require('../../middleware/jwtMiddleWare');
+const controller = require("../../controller/admin/employeeController");
 
 router.get("/list",authMiddleware,(req,res)=>{
     controller.get.list(req,res);

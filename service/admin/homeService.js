@@ -1,6 +1,6 @@
-const homeModel = require('../models/home.model');
-const bcrypt = require('../util/bcryptUtil');
-const jwt = require('../util/jwtUtil');
+const homeModel = require('../../models/admin/home.model');
+const bcrypt = require('../../util/bcryptUtil');
+const jwt = require('../../util/jwtUtil');
 
 exports.login = async (req,res)=>{
     let resultObj = {};
