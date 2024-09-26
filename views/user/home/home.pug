@@ -1,0 +1,88 @@
+extends ../include/head
+
+block content
+  section#intro.position-relative.mt-4
+    .container-lg
+      .swiper.main-swiper
+        .swiper-wrapper
+          .swiper-slide
+            .card.d-flex.flex-row.align-items-end.border-0.large.jarallax-keep-img
+              img(src="/images/user/card-image1.jpg" alt="shoes" class="img-fluid jarallax-img")
+              .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                h2.card-title.display-3.light Stylish shoes for Women
+                a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+          .swiper-slide
+            .row.g-4
+              .col-lg-12.mb-4
+                .card.d-flex.flex-row.align-items-end.border-0.jarallax-keep-img
+                  img(src="/images/user/card-image2.jpg" alt="shoes" class="img-fluid jarallax-img")
+                  .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                    h2.card-title.style-2.display-4.light Sports Wear
+                    a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+              .col-lg-12
+                .card.d-flex.flex-row.align-items-end.border-0.jarallax-keep-img
+                  img(src="/images/user/card-image3.jpg" alt="shoes" class="img-fluid jarallax-img")
+                  .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                    h2.card-title.style-2.display-4.light Fashion Shoes
+                    a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+          .swiper-slide
+            .card.d-flex.flex-row.align-items-end.border-0.large.jarallax-keep-img
+              img(src="/images/user/card-image4.jpg" alt="shoes" class="img-fluid jarallax-img")
+              .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                h2.card-title.display-3.light Stylish shoes for men
+                a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+          .swiper-slide
+            .row.g-4
+              .col-lg-12.mb-4
+                .card.d-flex.flex-row.align-items-end.border-0.jarallax-keep-img
+                  img(src="/images/user/card-image5.jpg" alt="shoes" class="img-fluid.jarallax-img")
+                  .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                    h2.card-title.style-2.display-4.light Men Shoes
+                    a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+              .col-lg-12
+                .card.d-flex.flex-row.align-items-end.border-0.jarallax-keep-img
+                  img(src="/images/user/card-image6.jpg" alt="shoes" class="img-fluid.jarallax-img")
+                  .cart-concern.p-3.m-3.p-lg-5.m-lg-5
+                    h2.card-title.style-2.display-4.light Women Shoes
+                    a.text-uppercase.light.mt-3.d-inline-block.text-hover.fw-bold.light-border(href="index.html") Shop Now
+      .swiper-pagination
+  section.discount-coupon.py-2.my-2.py-md-5.my-md-5
+    .container
+      .bg-gray.coupon.position-relative.p-5
+        .bold-text.position-absolute 10% OFF
+        .row.justify-content-between.align-items-center
+          .col-lg-7.col-md-12.mb-3
+            .coupon-header
+              h2.display-7 10% OFF Discount Coupons
+              p.m-0 Subscribe us to get 10% OFF on all the purchases
+          .col-lg-3.col-md-12
+            .btn-wrap
+              a.btn.btn-black.btn-medium.text-uppercase.hvr-sweep-to-right(href="#") Email me
+  section#featured-products.product-store
+    .container-md
+      .display-header.d-flex.align-items-center.justify-content-between
+        h2.section-title.text-uppercase Featured Products
+        .btn-right
+          a.d-inline-block.text-uppercase.text-hover.fw-bold(href="index.html") View all
+      .product-content.padding-small
+        .row.row-cols-1.row-cols-sm-2.row-cols-md-3.row-cols-lg-5
+          each product in [{ image: '/images/user/card-item1.jpg', title: 'Running shoes for men', price: '$99' },{ image: '/images/user/card-item2.jpg', title: 'Running shoes for men', price: '$99' },{ image: '/images/user/card-item3.jpg', title: 'Running shoes for men', price: '$99' },{ image: '/images/user/card-item4.jpg', title: 'Running shoes for men', price: '$99' },{ image: '/images/user/card-item5.jpg', title: 'Running shoes for men', price: '$99' }]
+            .col.mb-4
+              .product-card.position-relative
+                .card-img
+                  img.product-image.img-fluid(src=product.image, alt="product-item")
+                  .cart-concern.position-absolute.d-flex.justify-content-center
+                    .cart-button.d-flex.gap-2.justify-content-center.align-items-center
+                      button.btn.btn-light(type="button", data-bs-toggle="modal", data-bs-target="#modallong")
+                        svg.shopping-carriage
+                          use(xlink:href="#shopping-carriage")
+                      button.btn.btn-light(type="button", data-bs-target="#modaltoggle", data-bs-toggle="modal")
+                        svg.quick-view
+                          use(xlink:href="#quick-view")
+                .card-detail.d-flex.justify-content-between.align-items-center.mt-3
+                  h3.card-title.fs-6.fw-normal.m-0
+                    a(href="index.html") #{product.title}
+                  span.card-price.fw-bold #{product.price}
+
+
+

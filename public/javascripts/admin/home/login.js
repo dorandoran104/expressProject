@@ -31,7 +31,7 @@ function login(){
     param.email = email.value;
     param.password = password.value;
 
-    fetch('/login',{
+    fetch('/admin/login',{
         method : 'post'
         ,body : JSON.stringify(param)
         ,headers : {

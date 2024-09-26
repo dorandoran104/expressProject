@@ -9,8 +9,9 @@ exports.codeExists = (code)=>{
             WHERE code = ?
         `
         db.query(sql,code,(err,data)=>{
+            console.log(data);
             if(err) reject(1)
-            if(!err) resolve(data);
+            if(!err) resolve(data[0].count);
         })
     })
 }
@@ -27,27 +28,35 @@ exports.create = (body)=>{
                 ,use_yn
                 ,sold_out_yn
                 ,revealed_yn
+                ,file_idx
             )VALUES (
-                ?
-                ,?
-                ,?
-                ,?
-                ,?
-                ,?
-                ,?
+                ?,?,?,?,?,?,?,?,?
             )
         `
-        db.query(sql,[body.code
+        db.query(sql,[
+            body.code
             ,body.name
-            ,body.price
-            ,body.tax
-            ,body.total_price
+            ,body.price.replaceAll(',','')
+            ,body.tax.replaceAll(',','')
+            ,body.total_price.replaceAll(',','')
             ,body.use_yn
             ,body.sold_out_yn
-            ,body.revealed_yn]
+            ,body.revealed_yn
+            ,body.file_idx != null && body.file_idx != '' ? file_idx : null]
             ,(err,data)=>{
-                if(err) reject({result : false})
+                if(err) reject(err)
                 else resolve({result : true});
             })
+    })
+}
+
+exports.update = (body)=>{
+    return new Promise((resolve,reject)=>{
+        let sql = `
+            UPDATE goods SET
+                price = ?
+                ,tax = ?
+                ,
+        `
     })
 }

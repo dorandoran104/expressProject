@@ -96,7 +96,6 @@ exports.write = (body)=>{
 }
 
 exports.modify = (body)=>{
-    console.log(body);
     return new Promise((resolve,reject)=>{
         const sql = `
             UPDATE employee SET

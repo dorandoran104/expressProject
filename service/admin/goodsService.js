@@ -1,4 +1,5 @@
 const goodsModel = require('../../models/admin/goods.model');
+const fileModel = require('../../models/admin/file.model');
 const randomUtil = require('../../util/randomUtil');
 
 exports.create = async (req,res)=>{
@@ -20,16 +21,22 @@ exports.create = async (req,res)=>{
     let existsFlag = false;
     while(existsFlag == false){
         const randomCode = randomUtil.createRandomCode(13);
-        if(goodsModel.codeExists(randomCode) == 0){
+        if(await goodsModel.codeExists(randomCode) == 0){
             body.code = randomCode;
             existsFlag = true;
         }
     }
-    
 
-
-    return {
-        result : false,
-        errMessage : '저장에 실패하였습니다.'
+    const fileArr = req.files;
+    if(fileArr != null && fileArr.length > 0){
+        let fileIdxArr = [];
+        fileArr.forEach(async (file)=>{
+            const fileIdx = await fileModel.insert(file);
+            fileIdxArr.push(fileIdx); 
+        })
+        body.file_idx = fileIdxArr.join('&^');
     }
+    let resultObj = await goodsModel.create(body);
+    console.log(resultObj);
+    return resultObj;
 }

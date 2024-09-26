@@ -1,0 +1,96 @@
+header#header.site-header.text-black
+  .header-top.border-bottom.py-2
+    .container-lg
+      .row.justify-content-evenly
+        .col
+          ul.social-links.list-unstyled.d-flex.m-0
+            li.pe-2
+              a(href="#")
+                svg.facebook(width="20" height="20")
+                  use(xlink:href="#facebook")
+            li.pe-2
+              a(href="#")
+                svg.instagram(width="20" height="20")
+                  use(xlink:href="#instagram")
+            li.pe-2
+              a(href="#")
+                svg.youtube(width="20" height="20")
+                  use(xlink:href="#youtube")
+            li
+              a(href="#")
+                svg.pinterest(width="20" height="20")
+                  use(xlink:href="#pinterest")
+        .col.d-none.d-md-block
+          p.text-center.text-black.m-0
+            strong Special Offer: Free Shipping on all the orders above $100
+        .col
+          ul.d-flex.justify-content-end.gap-3.list-unstyled.m-0
+            li
+              a(href="#") Contact
+            li
+              a(href="#") Cart
+            li
+              a(href="#") Login
+
+  nav#header-nav.navbar.navbar-expand-lg
+    .container-lg
+      a.navbar-brand(href="index.html")
+        img(src="/images/user/main-logo.png" class="logo" alt="logo")
+      button.navbar-toggler.d-flex.d-lg-none.order-3.border-0.p-1.ms-2(type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation")
+        svg.navbar-icon
+          use(xlink:href="#navbar-icon")
+      .offcanvas.offcanvas-end(tabindex="-1" id="bdNavbar")
+        .offcanvas-header.px-4.pb-0
+          a.navbar-brand.ps-3(href="index.html")
+            img(src="/images/user/main-logo.png" class="logo" alt="logo")
+          button.btn-close.btn-close-black.p-5(type="button" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar")
+        .offcanvas-body
+          ul#navbar.navbar-nav.fw-bold.justify-content-end.align-items-center.flex-grow-1
+            li.nav-item.dropdown
+              a.nav-link.me-5.active.dropdown-toggle.border-0(href="#" data-bs-toggle="dropdown" aria-expanded="false") Home
+              ul.dropdown-menu.fw-bold
+                li
+                  a.dropdown-item(href="index.html") Home V1
+                li
+                  a.dropdown-item(href="index.html") Home V2
+            li.nav-item
+              a.nav-link.me-5(href="#") Men
+            li.nav-item
+              a.nav-link.me-5(href="#") Women
+            li.nav-item.dropdown
+              a.nav-link.me-5.active.dropdown-toggle.border-0(href="#" data-bs-toggle="dropdown" aria-expanded="false") Page
+              ul.dropdown-menu.fw-bold
+                li
+                  a.dropdown-item(href="index.html") About Us
+                li
+                  a.dropdown-item(href="index.html") Shop
+                li
+                  a.dropdown-item(href="index.html") Blog
+                li
+                  a.dropdown-item(href="index.html") Single Product
+                li
+                  a.dropdown-item(href="index.html") Single Post
+                li
+                  a.dropdown-item(href="index.html") Styles
+                li
+                  a.dropdown-item(href="#" data-bs-toggle="modal" data-bs-target="#modallong") cart
+                li
+                  a.dropdown-item(href="#" data-bs-toggle="modal" data-bs-target="#modallogin") Login
+            li.nav-item
+              a.nav-link.me-5(href="index.html") Shop
+            li.nav-item
+              a.nav-link.me-5(href="#") Sale
+      .user-items.ps-0.ps-md-5
+        ul.d-flex.justify-content-end.list-unstyled.align-item-center.m-0
+          li.pe-3
+            a(href="login" data-bs-toggle="modal" data-bs-target="#modallogin" class="border-0")
+              svg.user(width="24" height="24")
+                use(xlink:href="#user")
+          li.pe-3
+            a(href="#" data-bs-toggle="modal" data-bs-target="#modallong" class="border-0")
+              svg.shopping-cart(width="24" height="24")
+                use(xlink:href="#shopping-cart")
+          li
+            a(href="#" class="search-item border-0" data-bs-toggle="collapse" data-bs-target="#search-box" aria-label="Toggle navigation")
+              svg.search(width="24" height="24")
+                use(xlink:href="#search")

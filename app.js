@@ -8,7 +8,7 @@ var adminIndexRouter = require('./routes/admin/index');
 var adminEmployeeRouter = require("./routes/admin/employee");
 var adminGoodsRouter = require('./routes/admin/goods');
 
-// const authMiddleware = require('./middleware/jwtMiddleWare');
+var homeRouter = require('./routes/user/home');
 
 var app = express();
 
@@ -23,11 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminIndexRouter);
-// app.use('/users', usersRouter);
 app.use("/admin/employee",adminEmployeeRouter);
 app.use('/admin/goods',adminGoodsRouter);
 
-// app.use(authMiddleware);
+app.use('/',homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
