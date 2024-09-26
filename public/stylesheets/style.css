@@ -1,3 +1,14 @@
+
+/*
+CUSTOM
+*/
+
+.pointer {cursor: pointer;}
+.add_btn {text-align: right; margin-bottom: 10px;}
+.hover {color : #4154f1};
+.thumbnail {width : 200px; height : 200px};
+
+
 /**
 * Template Name: NiceAdmin
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -1231,10 +1242,3 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
-
-/*
-CUSTOM
-*/
-
-.pointer {cursor: pointer;}
-.add_btn {text-align: right; margin-bottom: 10px;}

@@ -94,3 +94,24 @@ exports.write = (body)=>{
         })
     })
 }
+
+exports.modify = (body)=>{
+    console.log(body);
+    return new Promise((resolve,reject)=>{
+        const sql = `
+            UPDATE employee SET
+                email = ?
+                ,name = ?
+                ,birth_date = ?
+                ,mobile_number = ?
+                ,start_date = ?
+                ,end_date = IF(? = '',end_date,?)
+                ,password = IF(? = '' , password, ?)
+            WHERE code = ?
+        `
+        db.query(sql,[body.email, body.name,body.birth_date,body.mobile_number,body.start_date,body.end_date,body.end_date,body.password,body.password,body.code],(err,data)=>{
+            if(err) reject({result : false})
+            if(!err) resolve({result: true});
+        })
+    })
+}

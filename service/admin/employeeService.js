@@ -1,6 +1,10 @@
-const employeeModel = require("../models/employee.model");
-const randomUtil = require("../util/randomUtil");
-const bcryptUtil = require('../util/bcryptUtil');
+const employeeModel = require("../../models/admin/employee.model");
+const randomUtil = require("../../util/randomUtil");
+const bcryptUtil = require('../../util/bcryptUtil');
+
+const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
 exports.list = async (req,res)=>{
     let body = req.body;
@@ -30,11 +34,6 @@ exports.list = async (req,res)=>{
 
 exports.write = async (req,res)=>{
     const body = req.body;
-
-    const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-    const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-
     let resultObj = {};
     let result = true;
     let message = '';
@@ -99,4 +98,69 @@ exports.write = async (req,res)=>{
 exports.detail = async (code)=>{
     let result = await employeeModel.detail(code);
     return result;
+}
+
+exports.modify = async (req)=>{
+    const code = req.params.code;
+    const body = req.body;
+    console.log(body);
+    let resultObj = {};
+    let blankFlag = false;
+
+    Object.keys(body).forEach((data)=>{
+        const value = body[data];
+        if(data != 'end_date' && data != 'password'  && value == ''){
+            blankFlag = true;
+        }
+    })
+
+    if(blankFlag == true){
+        resultObj.result = false;
+        resultObj.errMessage = '빈값이 존재합니다.';
+        return resultObj;
+    }
+
+    if(!date_reg.test(body.start_date) || !date_reg.test(body.birth_date)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 날짜입니다.';
+        return resultObj;
+    }
+
+    if(body.end_date != null && body.end_date != '' && !date_reg.test(body.end_date)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 날짜입니다.';
+        return resultObj;
+    }
+
+    if(!email_reg.test(body.email)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 이메일입니다.';
+        return resultObj;
+    }
+
+    if(!phone_reg.test(body.mobile_number)){
+        resultObj.result = false;
+        resultObj.errMessage = '유효하지 않은 휴대폰번호 입니다.'
+        return resultObj;
+    }
+
+    if(body.password != null && body.password != ''){
+        const bcryptPassword =  bcryptUtil.createBcrypt(body.password)
+        console.log(bcryptPassword)
+        if(bcryptPassword == null || bcryptPassword == ''){
+            resultObj.result = false;
+            resultObj.errMessage = '오류가 발생했습니다.';
+            return resultObj;
+        }
+        
+        body.password = bcryptPassword;
+    }
+
+    let result = await employeeModel.modify(body);
+    resultObj.result = result.result; 
+    if(!resultObj.result){
+        resultObj.errMessage = '저장에 실패하였습니다.'
+    }
+    console.log(resultObj);
+    return resultObj;
 }

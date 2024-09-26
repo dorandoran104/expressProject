@@ -1,7 +1,7 @@
-const homeService = require('../service/homeService');
+const homeService = require('../../service/admin/homeService');
 
 exports.home = (req,res)=>{
-    return res.render('home/index', { title: 'Express' });
+    return res.render('admin/home/index', { title: 'Express' });
 }
 
 exports.login = async (req,res)=>{

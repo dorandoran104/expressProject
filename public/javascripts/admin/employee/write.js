@@ -19,7 +19,7 @@ button.addEventListener('click',()=>{
         param[input.getAttribute('name')] = input.value;
     }
 
-    fetch("/employee/write",{
+    fetch("/admin/employee/write",{
         method : "post"
         ,body : JSON.stringify(param)
         ,headers : {
@@ -30,7 +30,7 @@ button.addEventListener('click',()=>{
         console.log(res);
         if(res.result){
             alert('저장되었습니다.');
-            location.href = '/employee/list';
+            location.href = '/admin/employee/list';
         }
         if(!res.result){
             alert(res.errMessage);
