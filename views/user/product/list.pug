@@ -1,0 +1,13 @@
+extends ../include/head
+
+block content
+  .container.mt-5
+    for list in result
+      .card.pointer(style='width: 18rem;')
+        img.card-img-top(src=list.path, alt='...')
+        .card-body
+          p.card-text
+            span=list.name
+            span=list.total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+    

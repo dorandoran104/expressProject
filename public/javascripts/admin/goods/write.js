@@ -67,33 +67,33 @@ write_btn.addEventListener('click',()=>{
         formData.append(el.getAttribute('name'),el.checked ? 'Y' : 'N');
     })
 
-    console.log(formData);
-
     let imageArray = [];
     const files = section.querySelector('input[type="file"]').files;
     console.log(files);
     for(let i = 0 ; i<files.length ; i++){
         formData.append('files',files[i])
     }
-
-    fetch('/goods/write',{
-        method : 'post',
-        body : formData,
-    }).then((res)=> res.json())
-    .then((res)=>{
-        if(res.result){
-            alert('저장되었습니다.');
-        }
-        if(!res.result){
-            alert(res.errMessage)
+    if(confirm('저장하시겠습니까?')){
+        fetch('/admin/goods/write',{
+            method : 'post',
+            body : formData,
+        }).then((res)=> res.json())
+        .then((res)=>{
+            console.log(res);
+            if(res.result){
+                alert('저장되었습니다.');
+                location.href = '/admin/goods/list';
+                return false;
+            }
+            if(!res.result){
+                alert(res.errMessage)
+                return false;
+            }
+        }).catch((err)=>{
+            alert('오류가 발생하였습니다.')
             return false;
-        }
-    }).catch((err)=>{
-        alert('저장에 실패하였습니다.')
-        return false;
-    })
-
-
+        })
+    }
 })
 
 //파일 추가시

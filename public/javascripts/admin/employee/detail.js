@@ -30,7 +30,6 @@ document.querySelector('button.history_back').addEventListener('click',()=>{
 
 document.querySelector('button.write_btn').addEventListener('click',()=>{
     const inputs = document.querySelectorAll('.needs-validation input');
-    console.log(inputs);
     let param = {};
     for(let i = 0; i<inputs.length ; i++){
         const input = inputs[i];

@@ -1,4 +1,4 @@
-const employeeModel = require("../../models/admin/employee.model");
+const employeeModel = require("../../models/employee.model");
 const randomUtil = require("../../util/randomUtil");
 const bcryptUtil = require('../../util/bcryptUtil');
 
@@ -6,6 +6,12 @@ const email_reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const date_reg = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 const phone_reg = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
+/**
+ * 직원 리스트 출력
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.list = async (req,res)=>{
     let body = req.body;
     if(body.page == null || body.page == ''){
@@ -32,6 +38,12 @@ exports.list = async (req,res)=>{
     return resultObj;
 }
 
+/**
+ * 직원 등록 API
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.write = async (req,res)=>{
     const body = req.body;
     let resultObj = {};
@@ -95,11 +107,21 @@ exports.write = async (req,res)=>{
     return resultObj;
 }
 
+/**
+ * 직원 상세 페이지
+ * @param {String} code 
+ * @returns 
+ */
 exports.detail = async (code)=>{
     let result = await employeeModel.detail(code);
     return result;
 }
 
+/**
+ * 
+ * @param {JSON} req 
+ * @returns 
+ */
 exports.modify = async (req)=>{
     const code = req.params.code;
     const body = req.body;

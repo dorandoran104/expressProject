@@ -27,7 +27,6 @@ button.addEventListener('click',()=>{
         }
     }).then((res)=> res.json())
     .then((res)=>{
-        console.log(res);
         if(res.result){
             alert('저장되었습니다.');
             location.href = '/admin/employee/list';

@@ -1,0 +1,33 @@
+extends ../include/head
+
+block content
+  main#main.main 
+    .pagetitle
+      h1 카테고리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/admin") 대시보드
+          //- li.breadcrumb-item Tables
+          li.breadcrumb-item.active 카테고리
+    section.section
+      div.add_btn
+        button.btn.btn-primary 등록
+      .row
+        .card
+          .card-body
+            //- h5.card-title Default Table
+            // Default Table
+            table.table
+              thead
+                tr
+                  th(scope="col") 이름
+                  th(scope="col") 휴대폰번호
+                  th(scope="col") 재직 여부
+                  th(scope="col") 입사일
+                  th(scope="col") 퇴사일
+              tbody
+                
+                
+
+  script(src="/javascripts/admin/category/list.js") 

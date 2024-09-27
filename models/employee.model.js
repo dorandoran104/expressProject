@@ -13,7 +13,7 @@ exports.list = (body)=>{
             FROM employee
         `
         db.query(sql,(err,data)=>{
-            if(err) reject({result :false});
+            if(err) reject(1);
             if(!err) resolve(data);
         })
     })
@@ -30,6 +30,8 @@ exports.detail = async (code)=>{
                 ,email
                 ,code
                 ,DATE_FORMAT(birth_date,'%Y-%m-%d') as birth_date
+                ,access_token
+                ,refresh_token
             FROM employee
             WHERE code = ?
         `;
@@ -96,7 +98,6 @@ exports.write = (body)=>{
 }
 
 exports.modify = (body)=>{
-    console.log(body);
     return new Promise((resolve,reject)=>{
         const sql = `
             UPDATE employee SET
