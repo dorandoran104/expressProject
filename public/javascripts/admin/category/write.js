@@ -14,6 +14,36 @@ write_btn.addEventListener('click',()=>{
     return false;
   }
 
+  param.first_category = firstCategory.value;
+  param.first_category_input = document.querySelector('.section input[name="first_category_input"]').value;
+  param.second_category = secondCategory.value
+  param.second_category_input = document.querySelector('.section input[name="second_category_input"]').value;
+
+  if(confirm('저장하시겠습니까?')){
+    fetch('/admin/category/write',{
+      method : 'post'
+      ,body : JSON.stringify(param)
+      ,headers : {
+        'content-type' : 'application/json'
+      }
+    })
+    .then((res)=> res.json())
+    .then((res)=>{
+      if(res.result){
+        alert('저장되었습니다.');
+        location.href = '/admin/category/list'
+      }
+      if(!res.result){
+        alert(res.errMessage);
+        return false;
+      }
+    })
+    .catch(()=>{
+      alert('오류가 발생하였습니다.');
+      return false;
+    })
+  }
+
   console.log(firstCategory.value)
 })
 

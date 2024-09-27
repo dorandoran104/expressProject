@@ -22,8 +22,14 @@ exports.login = async (req,res)=>{
     const token = jwt.createToken({
         email : email,
         code : code
-    });
+    },'1h');
+
+    const reFreshToken = jwt.createToken({
+        email : email,
+        code : code
+    },'3d')
     res.cookie('token',token);
-    resultObj.result = await homeModel.updateToken(email,token);
+    res.cookie('refresh_token',reFreshToken)
+    resultObj.result = await homeModel.updateToken(email,token,reFreshToken);
     return resultObj;
 }

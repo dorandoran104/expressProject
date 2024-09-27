@@ -30,6 +30,8 @@ exports.detail = async (code)=>{
                 ,email
                 ,code
                 ,DATE_FORMAT(birth_date,'%Y-%m-%d') as birth_date
+                ,access_token
+                ,refresh_token
             FROM employee
             WHERE code = ?
         `;

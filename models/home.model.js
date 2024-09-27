@@ -17,15 +17,15 @@ exports.getEmployee = (email)=>{
     })
 }
 
-exports.updateToken = (email,token)=>{
+exports.updateToken = (email,token,refresh_token)=>{
     return new Promise((resolve,reject)=>{
         let sql = `
             UPDATE employee SET
                 access_token = ?
-                
+                ,refresh_token = ?
             WHERE email = ?
         `
-        db.query(sql,[token,email],(err,data)=>{
+        db.query(sql,[token,refresh_token,email],(err,data)=>{
             if(!err) resolve({result : true});
         })
     })
