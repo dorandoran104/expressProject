@@ -3,13 +3,13 @@ extends ../include/head
 block content
   main#main.main 
     .pagetitle
-      h1 직원관리
+      h1 카테고리
       nav
         ol.breadcrumb
           li.breadcrumb-item
             a(href="/admin") 대시보드
           //- li.breadcrumb-item Tables
-          li.breadcrumb-item.active 직원관리
+          li.breadcrumb-item.active 카테고리
     section.section
       div.add_btn
         button.btn.btn-primary 등록
@@ -27,17 +27,7 @@ block content
                   th(scope="col") 입사일
                   th(scope="col") 퇴사일
               tbody
-                if result.list.length == 0
-                  tr(colspan='5')
-                    td 데이터가 존재하지 않습니다.
-                else 
-                  for list in result.list
-                    tr.pointer.link(data-code=list.code)
-                      th=list.name
-                      td=list.mobile_number
-                      td=list.status
-                      td=list.start_date
-                      td=list.end_date == null ? '-' : list.end_date
+                
                 
 
-  script(src="/javascripts/admin/employee/list.js") 
+  script(src="/javascripts/admin/category/list.js") 

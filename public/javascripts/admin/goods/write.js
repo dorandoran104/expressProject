@@ -79,16 +79,18 @@ write_btn.addEventListener('click',()=>{
             body : formData,
         }).then((res)=> res.json())
         .then((res)=>{
+            console.log(res);
             if(res.result){
                 alert('저장되었습니다.');
-                location.href('/admin/goods/list')
+                location.href = '/admin/goods/list';
+                return false;
             }
             if(!res.result){
                 alert(res.errMessage)
                 return false;
             }
-        }).catch(err=>{
-            alert('저장에 실패하였습니다.')
+        }).catch((err)=>{
+            alert('오류가 발생하였습니다.')
             return false;
         })
     }

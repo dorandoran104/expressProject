@@ -1,0 +1,82 @@
+extends ../include/head
+
+block content
+  main#main.main
+    .pagetitle
+      h1 카테고리
+      nav
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href="/admin") 대시보드
+          li.breadcrumb-item
+            a(href="/category/list") 카테고리
+          li.breadcrumb-item.active 등록
+    section.section 
+      .row 
+        div.card
+          .card-body
+            h5.card-title 카테고리 등록
+            //- p For custom Bootstrap form validation messages, you’ll need to add the 
+            //-   code novalidate 
+            //-   boolean attribute to your 
+            //-   code &lt;form&gt;. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript.
+
+            // Custom Styled Validation
+            form.row.g-3.needs-validation(novalidate)
+              label.col-sm-6 1차 카테고리
+              label.col-sm-6 2차 카테고리
+              .col-sm-6.chg_display
+                select.form-select.first_category(aria-label="Default select example",onchange="change_input(this)")
+                  option(value="") 1차 카테고리 선택
+                  option(value="a") 직접입력
+              .col-sm-6.chg_display
+                select.form-select.second_category(aria-label="Default select example",onchange="change_input(this)")
+                  option(value="") 2차 카테고리 선택
+                  option(value="a") 직접입력
+              .col-sm-6
+                label
+                input.form-control(type="text", name="first_category_input", disabled)
+              .col-sm-6 
+                label
+                input.form-control(type="text", name="second_category_input", disabled)
+
+                
+              //- <div class="row mb-3">
+              //-     <label class="col-sm-2 col-form-label">Select</label>
+              //-     <div class="col-sm-10">
+              //-       <select class="form-select" aria-label="Default select example">
+              //-         <option selected>Open this select menu</option>
+              //-         <option value="1">One</option>
+              //-         <option value="2">Two</option>
+              //-         <option value="3">Three</option>
+              //-       </select>
+              //-     </div>
+              //-   </div>
+              //- .col-md-6
+              //-   label.form-label(for="validationCustom01") 이름
+              //-   input.form-control(type="text", id="validationCustom01", value="" name="name")
+              //- .col-md-6
+              //-   label.form-label(for="validationCustomUsername") 휴대전화
+              //-   .input-group.has-validation
+              //-     //- span.input-group-text(id="inputGroupPrepend") @
+              //-     input.form-control(type="text", id="validationCustomUsername", aria-describedby="inputGroupPrepend",name="mobile_number")
+              //- .col-md-6
+              //-   label.form-label(for="validationCustom05") 생년월일
+              //-   input.form-control(type="text", id="validationCustom05", name="birth_date")
+              //-   .invalid-feedback Please provide a valid zip.
+              //- .col-md-3
+              //-   label.form-label(for="validationCustom03") 이메일
+              //-   input.form-control(type="email", id="validationCustom03", name="email")
+              //- .col-md-3
+              //-   label.form-label(for="validationCustom04") 비밀번호
+              //-   input.form-control(type="password", id="validationCustom03", name="password")
+              //- .col-12
+              //-   .form-check
+              //-     input.form-check-input(type="checkbox", value="", id="invalidCheck", required)
+              //-     label.form-check-label(for="invalidCheck") Agree to terms and conditions
+              //-     .invalid-feedback You must agree before submitting.
+              .col-12
+                button.btn.btn-primary.write_btn(type="button") 등록
+
+
+  script(src="/javascripts/admin/category/write.js")   

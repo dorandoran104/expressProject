@@ -4,8 +4,6 @@ const randomUtil = require('../../util/randomUtil');
 
 exports.create = async (req,res)=>{
     let body = req.body;
-    console.log(body);
-    console.log(req.files)
     let blankFlag = false;
     Object.keys(body).forEach((data)=>{
         if(body[data] == '') blankFlag = true;
@@ -30,10 +28,16 @@ exports.create = async (req,res)=>{
     const fileArr = req.files;
     if(fileArr != null && fileArr.length > 0){
         let fileIdxArr = [];
-        fileArr.forEach(async (file)=>{
+        for(file of fileArr){
             const fileIdx = await fileModel.insert(file);
-            fileIdxArr.push(fileIdx); 
-        })
+            fileIdxArr.push(fileIdx);
+        }
+        // fileArr.forEach(async (file)=>{
+        //     const fileIdx = await fileModel.insert(file);
+        //     console.log(fileIdx);
+        //     fileIdxArr.push(fileIdx); 
+        // })
+        console.log(fileIdxArr)
         body.file_idx = fileIdxArr.join('&^');
     }
     let resultObj = await goodsModel.create(body);

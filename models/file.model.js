@@ -11,9 +11,11 @@ exports.insert = (file) => {
             ) VALUES(?,?,?,?)
         `
         db.query(sql,[file.path, file.filename, file.originalname, file.size],(err,data)=>{
+            console.log(data.insertId);
             if(err) {
                 reject(err)
             }
+            
             else resolve(data.insertId);
         })
     })

@@ -8,7 +8,7 @@ const authJWT = (req,res,next)=>{
         console.log('@@@@@@@@ token null @@@@@@@@@')
         console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         console.log("")
-        return res.render('home/401',{httpStatus : 401});
+        return res.render('admin/401',{httpStatus : 401});
     }
     try {
         const checkToken = jwt.checkToken(token);

@@ -42,7 +42,7 @@ exports.create = (body)=>{
             ,body.use_yn
             ,body.sold_out_yn
             ,body.revealed_yn
-            ,body.file_idx != null && body.file_idx != '' ? file_idx : null]
+            ,body.file_idx != null && body.file_idx != '' ? body.file_idx : null]
             ,(err,data)=>{
                 if(err) reject(err)
                 else resolve({result : true});
