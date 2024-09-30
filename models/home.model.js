@@ -1,4 +1,4 @@
-const db = require('./index');
+const {db,mybatisMapper,format} = require('./index');
 
 exports.getEmployee = (email)=>{
     return new Promise((resolve,reject)=>{

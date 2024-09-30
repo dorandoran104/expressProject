@@ -26,6 +26,14 @@ block content
               .col-md-12
                 label.form-label(for="validationCustom01") 상품명
                 input.form-control(type="text", id="validationCustom01", value="" name="name")
+              .col-sm-6.chg_display
+                label.form-label 1차 카테고리
+                select.form-select.first_category(aria-label="Default select example",onchange="change_input(this)")
+                  option(value="") 1차 카테고리 선택
+              .col-sm-6.chg_display
+                label.form-label 2차 카테고리
+                select.form-select.second_category(aria-label="Default select example",onchange="change_input(this)")
+                  option(value="") 2차 카테고리 선택
               .col-md-4
                 label.form-label 가격
                 input.form-control.number_input(type="text", name="price")

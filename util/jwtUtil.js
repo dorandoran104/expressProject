@@ -7,7 +7,6 @@ exports.createToken = (param,expireH)=>{
 }
 
 exports.checkToken = (token)=>{
-    console.log(jwt.verify(token,secretKey))
     return jwt.verify(token,secretKey);
 }
 

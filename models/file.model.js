@@ -1,4 +1,4 @@
-const db = require('./index');
+const {db,mybatisMapper,format} = require('./index');
 
 exports.insert = (file) => {
     return new Promise((resolve,reject)=>{
@@ -11,7 +11,6 @@ exports.insert = (file) => {
             ) VALUES(?,?,?,?)
         `
         db.query(sql,[file.path, file.filename, file.originalname, file.size],(err,data)=>{
-            console.log(data.insertId);
             if(err) {
                 reject(err)
             }
