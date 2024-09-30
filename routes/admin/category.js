@@ -14,4 +14,8 @@ router.post('/write',(req,res)=>{
   categoryController.create(req,res);
 })
 
+router.post('/api/getDescendantList',(req,res)=>{
+  categoryController.getDescendantList(req,res);
+})
+
 module.exports = router;

@@ -14,4 +14,23 @@
     </where>
   </select>
 
+  <!--자손 카테고리 리스트 출력-->
+  <select id="getDescendantList">
+    SELECT 
+      cr.idx 
+      ,cr.ancestor_idx 
+      ,cr.descendant_idx 
+      ,c.name
+      ,c.idx
+    FROM category_relationship cr
+    INNER JOIN (
+      SELECT
+        c.idx
+        ,c.name
+      FROM category c 
+      ) c on c.idx= cr.descendant_idx  
+    WHERE ancestor_idx = 1
+    and ancestor_idx != descendant_idx 
+  </select>
+
 </mapper>

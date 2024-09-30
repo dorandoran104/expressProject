@@ -101,3 +101,24 @@ exports.insertCategoryRelationship = (ancestor_idx,descendant_idx) =>{
     })
   })
 }
+
+/**
+ * 자손 카테고리 가져오기
+ * @param {Number ancestor_idx} param 
+ */
+exports.getDescendantList = async (param) =>{
+  const sql = mybatisMapper.getStatement('categoryMapper','getDescendantList',param,format);
+  console.info(sql);
+  return new Promise((resolve,reject)=>{
+    db.query(sql,(err,data)=>{
+      if(err){
+        console.error(err.message);
+        reject({result : false})
+      }
+      if(!err){
+        console.log(data)
+        resolve({result : true , list : data})
+      }
+    })
+  })
+}

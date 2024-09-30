@@ -51,15 +51,8 @@ exports.create = async (req,res)=>{
             const fileIdx = await fileModel.insert(file);
             fileIdxArr.push(fileIdx);
         }
-        // fileArr.forEach(async (file)=>{
-        //     const fileIdx = await fileModel.insert(file);
-        //     console.log(fileIdx);
-        //     fileIdxArr.push(fileIdx); 
-        // })
-        console.log(fileIdxArr)
         body.file_idx = fileIdxArr.join('&^');
     }
     let resultObj = await goodsModel.create(body);
-    console.log(resultObj);
     return resultObj;
 }

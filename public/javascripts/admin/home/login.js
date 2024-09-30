@@ -39,7 +39,6 @@ function login(){
         }
     }).then((res)=> res.json())
     .then((res)=>{
-        console.log(res);
         if(res.result){
             location.href = '/admin'
         }

@@ -125,7 +125,6 @@ exports.detail = async (code)=>{
 exports.modify = async (req)=>{
     const code = req.params.code;
     const body = req.body;
-    console.log(body);
     let resultObj = {};
     let blankFlag = false;
 
@@ -168,7 +167,6 @@ exports.modify = async (req)=>{
 
     if(body.password != null && body.password != ''){
         const bcryptPassword =  bcryptUtil.createBcrypt(body.password)
-        console.log(bcryptPassword)
         if(bcryptPassword == null || bcryptPassword == ''){
             resultObj.result = false;
             resultObj.errMessage = '오류가 발생했습니다.';
@@ -183,6 +181,5 @@ exports.modify = async (req)=>{
     if(!resultObj.result){
         resultObj.errMessage = '저장에 실패하였습니다.'
     }
-    console.log(resultObj);
     return resultObj;
 }

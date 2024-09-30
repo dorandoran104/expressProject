@@ -2,7 +2,10 @@ const mysql = require('mysql2');
 const dotenv = require("dotenv").config();
 var mybatisMapper = require('mybatis-mapper')
 
-mybatisMapper.createMapper(['./mapper/categoryMapper.xml'])
+mybatisMapper.createMapper([
+  './mapper/categoryMapper.xml'
+  ,'./mapper/goodsMapper.xml'
+])
 const format = { language: 'sql', indent: '  ' };
 
 const db = mysql.createConnection({

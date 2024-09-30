@@ -15,7 +15,6 @@ exports.create = async (body)=>{
     if(first_category === 'a'){
       // resultObj = await categoryModel.insertAncestor(first_category_input);
       resultObj = await categoryModel.insertCategory(first_category_input,1);
-      console.log(resultObj);
       if(!resultObj.result){
         return resultObj;
       }
@@ -38,4 +37,15 @@ exports.create = async (body)=>{
     console.error(error);
     return {result : false , errMessage : '오류가 발생하였습니다.'}
   }
+}
+
+/**
+ * 자손 카테고리 가져오기
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getDescendantList = async (req,res)=>{
+  const body = req.body;
+  const resultObj = await categoryModel.getDescendantList(body)
+  return resultObj;
 }

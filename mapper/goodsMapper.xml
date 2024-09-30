@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsMapper">
+  <insert id="create">
+    INSERT INTO goods (
+      code
+      ,name
+      ,price
+      ,tax
+      ,total_price
+      ,use_yn
+      ,sold_out_yn
+      ,revealed_yn
+      ,first_category_idx
+      ,second_category_idx
+      <if test="file_idx != null and file_idx != ''">
+      ,file_idx
+      </if>
+    )VALUES(
+      #{code}
+      ,#{name}
+      ,REPLACE(#{price},',','')
+      ,REPLACE(#{tax},',','')
+      ,REPLACE(#{total_price},',','')
+      ,#{use_yn}
+      ,#{sold_out_yn}
+      ,#{revealed_yn}
+      ,#{first_category_idx}
+      ,#{second_category_idx}
+      <if test="file_idx != null and file_idx != ''">
+      ,#{file_idx}
+      </if>
+    )
+  </insert>
+
+</mapper>

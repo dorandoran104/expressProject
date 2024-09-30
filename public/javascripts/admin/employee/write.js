@@ -43,7 +43,6 @@ button.addEventListener('click',()=>{
 
 //focus 이벤트
 document.querySelector('input[name="email"]').addEventListener('blur',(e)=>{
-    console.log(e.target);
     if(e.target.value.length > 0 && !email_reg.test(e.target.value)){
         alert('유효하지 않은 이메일 입니다.');
         return false;
@@ -70,7 +69,6 @@ document.querySelector('input[name="birth_date"]').addEventListener('blur',(e)=>
 })
 
 document.querySelector('input[name="mobile_number"]').addEventListener('input',(e)=>{
-    console.log('ss')
     e.target.setAttribute('maxlength',13);
     let value = e.target.value;
     value = e.target.value

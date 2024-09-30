@@ -43,12 +43,9 @@ write_btn.addEventListener('click',()=>{
       return false;
     })
   }
-
-  console.log(firstCategory.value)
 })
 
 function change_input (el){
-  console.log(el)
   let className = 'first_category';
   if(el.classList.contains('second_category')){
     className = 'second_category'

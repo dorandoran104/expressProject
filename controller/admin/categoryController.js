@@ -30,3 +30,13 @@ exports.create = async (req,res)=>{
      })
   }
 }
+
+/**
+ * 자손 카테고리 가져오기
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getDescendantList = async (req,res)=>{
+  const resultObj = await categoryService.getDescendantList(req,res);
+  res.json(resultObj);
+}

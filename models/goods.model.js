@@ -18,35 +18,44 @@ exports.codeExists = (code)=>{
 
 exports.create = (body)=>{
     return new Promise((resolve,reject)=>{
-        let sql = `
-            INSERT INTO goods (
-                code
-                ,name
-                ,price
-                ,tax
-                ,total_price
-                ,use_yn
-                ,sold_out_yn
-                ,revealed_yn
-                ,file_idx
-            )VALUES (
-                ?,?,?,?,?,?,?,?,?
-            )
-        `
-        db.query(sql,[
-            body.code
-            ,body.name
-            ,body.price.replaceAll(',','')
-            ,body.tax.replaceAll(',','')
-            ,body.total_price.replaceAll(',','')
-            ,body.use_yn
-            ,body.sold_out_yn
-            ,body.revealed_yn
-            ,body.file_idx != null && body.file_idx != '' ? body.file_idx : null]
-            ,(err,data)=>{
-                if(err) reject(err)
-                else resolve({result : true});
-            })
+        const sql = mybatisMapper.getStatement('goodsMapper','create',body,format);
+        console.info(sql);
+        db.query(sql,(err,data)=>{
+            if(err) {
+                console.error(err.message);
+                reject({result : false})
+            }
+            else resolve({result : true});
+        })
+        // let sql = `
+        //     INSERT INTO goods (
+        //         code
+        //         ,name
+        //         ,price
+        //         ,tax
+        //         ,total_price
+        //         ,use_yn
+        //         ,sold_out_yn
+        //         ,revealed_yn
+        //         ,file_idx
+        //     )VALUES (
+        //         ?,?,?,?,?,?,?,?,?
+        //     )
+        // `
+        // db.query(sql,[
+        //     body.code
+        //     ,body.name
+        //     ,body.price.replaceAll(',','')
+        //     ,body.tax.replaceAll(',','')
+        //     ,body.total_price.replaceAll(',','')
+        //     ,body.use_yn
+        //     ,body.sold_out_yn
+        //     ,body.revealed_yn
+        //     ,body.file_idx != null && body.file_idx != '' ? body.file_idx : null]
+        //     ,(err,data)=>{
+        //         if(err) reject(err)
+        //         else resolve({result : true});
+        //     })
     })
 }
 

@@ -67,19 +67,34 @@ write_btn.addEventListener('click',()=>{
         formData.append(el.getAttribute('name'),el.checked ? 'Y' : 'N');
     })
 
+    const selects = section.querySelectorAll('select');
+    
+    let selectFlag = false;
+
+    for(const select of selects){
+        if(select.value == null || select.value == ''){
+            selectFlag = true;
+        }
+        formData.append(select.getAttribute('name'),select.value);
+    }
+
+    if(selectFlag){
+        alert('카테고리를 선택해 주세요');
+        return false;
+    }
+
     let imageArray = [];
     const files = section.querySelector('input[type="file"]').files;
-    console.log(files);
     for(let i = 0 ; i<files.length ; i++){
         formData.append('files',files[i])
     }
+    
     if(confirm('저장하시겠습니까?')){
         fetch('/admin/goods/write',{
             method : 'post',
             body : formData,
         }).then((res)=> res.json())
         .then((res)=>{
-            console.log(res);
             if(res.result){
                 alert('저장되었습니다.');
                 location.href = '/admin/goods/list';
@@ -136,3 +151,21 @@ file_input.addEventListener('change',(e)=>{
     };
 })
 
+function change_first_category(el){
+    const param ={}
+    const secondCategorySelect = document.querySelector('.second_category');
+    if(el.value != ''){
+        param.ancestor_idx = el.value;
+        fetch('/admin/category/api/getDescendantList',{
+            method : 'post'
+            ,body : JSON.stringify(param)
+        })
+        .then((res)=> res.json())
+        .then((res)=>{
+            secondCategorySelect.innerHTML = '<option value="">2차 카테고리 선택</option>';
+            res.list.forEach((data)=>{
+                secondCategorySelect.innerHTML += `<option value="${data.descendant_idx}">${data.name}</option>`
+            })
+        })
+    }
+}
