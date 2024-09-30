@@ -6,7 +6,8 @@ exports.list = async (req,res)=>{
 }
 
 exports.write = async (req,res)=>{
-    res.render('admin/goods/write');
+    const categoryList = await goodsService.getCategoryList(1);
+    res.render('admin/goods/write',{categoryList,categoryList});
 }
 
 exports.create = async (req,res)=>{

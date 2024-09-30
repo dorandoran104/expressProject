@@ -1,7 +1,26 @@
 const goodsModel = require('../../models/goods.model');
+const categoryModel = require('../../models/category.model');
 const fileModel = require('../../models/file.model');
 const randomUtil = require('../../util/randomUtil');
 
+/**
+ * 카테고리 리스트 가져오기
+ * @param {Number} depth 
+ * @returns 
+ */
+exports.getCategoryList = async (depth)=>{
+    let param = {};
+    param.depth = depth;
+    const categoryArr = await categoryModel.list(param);
+    return categoryArr;
+}
+
+/**
+ * 상품 INSERT
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.create = async (req,res)=>{
     let body = req.body;
     let blankFlag = false;

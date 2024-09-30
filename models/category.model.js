@@ -1,20 +1,44 @@
-const db = require('./index');
+// const db = require('./index');
 
-// exports.detail = ()
+const {db,myBatisMapper,format, mybatisMapper} = require('./index');
+
+/**
+ * 카테고리 리스트
+ * @param {Object} param 
+ * @returns 
+ */
+exports.list = (param) => {
+  console.error(param)
+  return new Promise((resolve,reject)=>{
+    const sql = mybatisMapper.getStatement('categoryMapper','select',param,format)
+    console.info(sql);
+    db.query(sql,(err,data)=>{
+      if(err){
+        console.error(err.message);
+        reject({result : false})
+      }
+      if(!err){
+        console.log(data);
+        resolve(data);
+      }
+    })
+  })
+}
 
 /**
  * 카테고리 insert
  * @param {String} name 
  * @returns 
  */
-exports.insertCategory = (name)=>{
+exports.insertCategory = (name,depth)=>{
   return new Promise((resolve,reject)=>{
     const sql = `
       INSERT INTO category (
         name
-      )VALUES(?)
+        ,depth
+      )VALUES(?,?)
     `
-    db.query(sql,name,(err,data)=>{
+    db.query(sql,[name,depth],(err,data)=>{
       if(err){
         console.error(err.message);
         reject({result : false})
@@ -37,8 +61,7 @@ exports.insertCategoryAncestor = (ancestor_idx) => {
       INSERT INTO category_relationship (
         ancestor_idx
         ,descendant_idx
-        ,depth
-      )VALUES(?,?,0);
+      )VALUES(?,?);
     `
     db.query(sql,[ancestor_idx,ancestor_idx],(err,data)=>{
       if(err){
@@ -62,12 +85,10 @@ exports.insertCategoryRelationship = (ancestor_idx,descendant_idx) =>{
       INSERT INTO category_relationship (
         ancestor_idx
         ,descendant_idx
-        ,depth
       )
       SELECT
         ancestor_idx
         ,?
-        ,depth + 1
       FROM category_relationship
       WHERE descendant_idx = ?
     `

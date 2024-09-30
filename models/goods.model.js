@@ -1,4 +1,4 @@
-const db = require('./index');
+const {db,mybatisMapper,format} = require('./index');
 
 exports.codeExists = (code)=>{
     return new Promise((resolve,reject)=>{

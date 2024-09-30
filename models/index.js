@@ -1,7 +1,11 @@
 const mysql = require('mysql2');
 const dotenv = require("dotenv").config();
+var mybatisMapper = require('mybatis-mapper')
 
-const connection = mysql.createConnection({
+mybatisMapper.createMapper(['./mapper/categoryMapper.xml'])
+const format = { language: 'sql', indent: '  ' };
+
+const db = mysql.createConnection({
   
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -10,4 +14,4 @@ const connection = mysql.createConnection({
   multipleStatements: true
 })
 
-module.exports = connection;
+module.exports = {db,mybatisMapper,format}

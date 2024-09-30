@@ -14,7 +14,7 @@ exports.create = async (body)=>{
     let descendant_idx = '';
     if(first_category === 'a'){
       // resultObj = await categoryModel.insertAncestor(first_category_input);
-      resultObj = await categoryModel.insertCategory(first_category_input);
+      resultObj = await categoryModel.insertCategory(first_category_input,1);
       console.log(resultObj);
       if(!resultObj.result){
         return resultObj;
@@ -24,7 +24,7 @@ exports.create = async (body)=>{
       
     }
 
-    resultObj = await categoryModel.insertCategory(second_category_input);
+    resultObj = await categoryModel.insertCategory(second_category_input,2);
     descendant_idx = resultObj.idx;
     
     await categoryModel.insertCategoryAncestor(descendant_idx);

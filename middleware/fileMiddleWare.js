@@ -5,15 +5,15 @@ const path = require('path');
 // 파일 저장 경로 및 파일 이름 설정
 
 try {
-	fs.readdirSync('uploads'); // 폴더 확인
+	fs.readdirSync('public/uploads'); // 폴더 확인
 } catch(err) {
 	console.error('uploads 폴더가 없습니다. 폴더를 생성합니다.');
-    fs.mkdirSync('uploads'); // 폴더 생성
+    fs.mkdirSync('public/uploads'); // 폴더 생성
 }
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // 업로드 폴더 경로
+    cb(null, 'public/uploads/'); // 업로드 폴더 경로
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
