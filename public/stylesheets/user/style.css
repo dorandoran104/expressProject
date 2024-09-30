@@ -23,6 +23,11 @@ CSS STRUCTURE:
 /*--------------------------------------------------------------
 /** 1. VARIABLES
 --------------------------------------------------------------*/
+
+/** custom */
+.pointer {cursor: pointer;}
+
+
 body {
     --heading-font: "Inter", Roboto, sans-serif;
     --heading-font-weight: 400;

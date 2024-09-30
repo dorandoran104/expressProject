@@ -27,35 +27,6 @@ exports.create = (body)=>{
             }
             else resolve({result : true});
         })
-        // let sql = `
-        //     INSERT INTO goods (
-        //         code
-        //         ,name
-        //         ,price
-        //         ,tax
-        //         ,total_price
-        //         ,use_yn
-        //         ,sold_out_yn
-        //         ,revealed_yn
-        //         ,file_idx
-        //     )VALUES (
-        //         ?,?,?,?,?,?,?,?,?
-        //     )
-        // `
-        // db.query(sql,[
-        //     body.code
-        //     ,body.name
-        //     ,body.price.replaceAll(',','')
-        //     ,body.tax.replaceAll(',','')
-        //     ,body.total_price.replaceAll(',','')
-        //     ,body.use_yn
-        //     ,body.sold_out_yn
-        //     ,body.revealed_yn
-        //     ,body.file_idx != null && body.file_idx != '' ? body.file_idx : null]
-        //     ,(err,data)=>{
-        //         if(err) reject(err)
-        //         else resolve({result : true});
-        //     })
     })
 }
 
@@ -70,29 +41,23 @@ exports.update = (body)=>{
     })
 }
 
-exports.getUserProductList = (category)=>{
+/**
+ * 상품 출력
+ * @param {*} param 
+ * @returns 
+ */
+exports.getUserProductList = (param)=>{
     return new Promise((resolve,reject)=>{
-        let sql = `
-            SELECT
-                code
-                ,name
-                ,total_price
-                ,sold_out_yn
-                ,f.path
-            FROM goods g
-            INNER JOIN (
-                SELECT
-                    idx
-                    ,path
-                FROM file
-            ) f on f.idx = g.file_idx
-            WHERE first_category_idx = ?
-            AND use_yn = 'Y'
-            AND revealed_yn = 'Y'
-        `
-        db.query(sql,category,(err,data)=>{
-            if(err) reject(err);
-            else resolve(data)
+        const sql = mybatisMapper.getStatement('goodsMapper','selectList',param,format);
+        console.log(sql);
+        db.query(sql,(err,data)=>{
+            if(err){
+                console.error(err.message);
+                reject({result : false})
+            }
+            if(!err){
+                resolve({result : true, list : data})
+            }
         })
     })
 }

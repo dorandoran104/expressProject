@@ -19,3 +19,23 @@ exports.insert = (file) => {
         })
     })
 }
+
+/**
+ * 파일 조회
+ * @param {Object} param 
+ */
+exports.getFile = (param) => {
+    return new Promise((resolve,reject)=>{
+        const sql = mybatisMapper.getStatement('fileMapper','getFile',param,format);
+        console.info(sql);
+        db.query(sql,(err,data)=>{
+            if(err){
+                console.error(err.message);
+                reject({result : false})
+            }
+            if(!err){
+                resolve({result : true, list : data})
+            }
+        })
+    })
+}

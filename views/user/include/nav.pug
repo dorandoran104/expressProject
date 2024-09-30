@@ -47,12 +47,11 @@ header#header.site-header.text-black
         .offcanvas-body
           ul#navbar.navbar-nav.fw-bold.justify-content-end.align-items-center.flex-grow-1
             li.nav-item.dropdown
-              a.nav-link.me-5.active.dropdown-toggle.border-0(href="#" data-bs-toggle="dropdown" aria-expanded="false") 유니폼
-              ul.dropdown-menu.fw-bold
+              a.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false') 유니폼
+              ul.dropdown-menu
                 li
-                  a.dropdown-item(href="/product/1") 유니폼
-                li
-                  a.dropdown-item(href="/product/2") 마킹, 패치
+                  a.dropdown-item(href='/product/2') 유니폼
+
             //- li.nav-item
             //-   a.nav-link.me-5(href="#") 상품
             //- li.nav-item

@@ -1,13 +1,13 @@
 extends ../include/head
 
 block content
-  .container.mt-5
+  .container.mt-5.d-flex
     for list in result
-      .card.pointer(style='width: 18rem;')
-        img.card-img-top(src=list.path, alt='...')
+      .card.pointer.m-2.pointer(style='width: 18rem;',onclick="javascript:location.href='/product/detail/"+list.code+"'")
+        img.card-img-top(src=list.file_path, alt='...')
         .card-body
           p.card-text
-            span=list.name
-            span=list.total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            div.text-end=list.name
+            div.text-end=list.total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
     

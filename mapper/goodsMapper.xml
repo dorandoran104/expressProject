@@ -33,4 +33,25 @@
     )
   </insert>
 
+  <select id="selectList">
+    SELECT
+      code
+      ,name
+      ,total_price
+      ,sold_out_yn
+      ,g.file_idx
+    FROM goods g
+    <where>
+      <if test="second_category_idx != null and second_category_idx != ''">
+        AND g.second_category_idx = #{second_category_idx}
+      </if>
+      <if test="code != null and code != ''">
+        AND g.code = #{code}
+      </if>
+        AND use_yn = 'Y'
+        AND revealed_yn = 'Y'
+    </where>
+    
+  </select>
+
 </mapper>

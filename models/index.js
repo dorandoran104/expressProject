@@ -5,6 +5,7 @@ var mybatisMapper = require('mybatis-mapper')
 mybatisMapper.createMapper([
   './mapper/categoryMapper.xml'
   ,'./mapper/goodsMapper.xml'
+  ,'./mapper/fileMapper.xml'
 ])
 const format = { language: 'sql', indent: '  ' };
 
