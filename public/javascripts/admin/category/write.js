@@ -9,10 +9,10 @@ write_btn.addEventListener('click',()=>{
     return false;
   }
 
-  if(secondCategory.value == ''){
-    alert('2차 카테고리를 선택해 주세요');
-    return false;
-  }
+  // if(secondCategory.value == ''){
+  //   alert('2차 카테고리를 선택해 주세요');
+  //   return false;
+  // }
 
   param.first_category = firstCategory.value;
   param.first_category_input = document.querySelector('.section input[name="first_category_input"]').value;

@@ -10,4 +10,8 @@ router.get('/write',(req,res)=>{
   categoryController.write(req,res);
 })
 
+router.post('/write',(req,res)=>{
+  categoryController.create(req,res);
+})
+
 module.exports = router;
