@@ -22,3 +22,7 @@ ERP
     - 로그인
     - 회원 가입
     - 상품 구매
+
+ 공부 및 개발 중 자바스크립트의 타입 설정이 필요하겠다는 생각을 해서
+ 타입스크립트를 적용한 express를 개발 할 예정입니다.
+ - https://github.com/dorandoran104/typescript
